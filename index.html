@@ -1,44 +1,764 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Rans Synergies</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Rans Synergies — Connecting Ideas | Creating Values</title>
+<meta name="description" content="Rans Synergies — Integrated business solutions spanning vendor services, consultancy, HR, IT, AI, mechanical fabrication and civil construction."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#08090c;
+  --ink2:#0f1117;
+  --gold:#c9a84c;
+  --gold2:#e8c86d;
+  --gold3:#a07830;
+  --glow:rgba(201,168,76,0.18);
+  --glass:rgba(255,255,255,0.04);
+  --gb:rgba(255,255,255,0.07);
+  --white:#fff;
+  --off:#f5f0e8;
+  --muted:rgba(255,255,255,0.5);
+  --dim:rgba(255,255,255,0.2);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Jost',system-ui,sans-serif;
+  --nav:72px;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--sans);background:var(--ink);color:var(--white);overflow-x:hidden;line-height:1.7}
+::selection{background:var(--gold);color:var(--ink)}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--ink)}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--gold),var(--gold3));border-radius:2px}
+
+/* ══ CUSTOM CURSOR ══ */
+#cur{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s,background .15s;mix-blend-mode:screen}
+#cur-o{position:fixed;width:32px;height:32px;border:1px solid rgba(201,168,76,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s}
+@media(hover:none){#cur,#cur-o{display:none}}
+
+/* ══ NAV ══ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:800;
+  height:var(--nav);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5vw;
+  transition:background .4s,backdrop-filter .4s,box-shadow .4s;
+}
+nav.scrolled{
+  background:rgba(8,9,12,.92);
+  backdrop-filter:blur(24px) saturate(160%);
+  box-shadow:0 1px 0 rgba(201,168,76,.15);
+}
+.nav-logo{display:flex;align-items:center;gap:.9rem;text-decoration:none}
+.logo-sq{
+  width:42px;height:42px;border-radius:6px;
+  background:linear-gradient(135deg,var(--gold),var(--gold3));
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-weight:700;font-size:1.15rem;color:var(--ink);
+  letter-spacing:.03em;box-shadow:0 0 22px rgba(201,168,76,.45);
+  flex-shrink:0;
+}
+.logo-words{display:flex;flex-direction:column;line-height:1.15}
+.logo-name{font-family:var(--serif);font-weight:600;font-size:1.05rem;letter-spacing:.12em;text-transform:uppercase;color:var(--white)}
+.logo-tag{font-size:.58rem;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);opacity:.9}
+.nav-links{display:flex;gap:2.4rem;list-style:none}
+.nav-links a{font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s;position:relative;padding-bottom:2px}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .25s}
+.nav-links a:hover{color:var(--white)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-cta{border:1px solid rgba(201,168,76,.5);color:var(--gold);padding:.52rem 1.4rem;border-radius:3px;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:all .25s;white-space:nowrap;background:rgba(201,168,76,.06)}
+.nav-cta:hover{background:var(--gold);color:var(--ink);box-shadow:0 0 28px rgba(201,168,76,.5)}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.ham span{display:block;width:22px;height:1.5px;background:var(--white);border-radius:1px;transition:all .3s}
+
+/* ══ HERO ══ */
+#hero{
+  position:relative;min-height:100vh;
+  display:flex;align-items:center;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1800&q=80') center/cover no-repeat;
+}
+.hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(105deg,rgba(8,9,12,.97) 0%,rgba(8,9,12,.82) 50%,rgba(8,9,12,.5) 100%);
+}
+/* particle canvas */
+#particles{position:absolute;inset:0;z-index:1;pointer-events:none}
+.hero-content{
+  position:relative;z-index:2;
+  padding:calc(var(--nav)+5vh) 5vw 6vh;
+  max-width:900px;
+}
+.hero-kicker{
+  display:inline-flex;align-items:center;gap:.7rem;
+  border:1px solid rgba(201,168,76,.3);
+  background:rgba(201,168,76,.07);
+  padding:.38rem 1.1rem .38rem .7rem;
+  border-radius:30px;margin-bottom:2.25rem;
+}
+.kicker-dot{width:7px;height:7px;background:var(--gold);border-radius:50%;animation:kpulse 2s infinite}
+@keyframes kpulse{0%,100%{box-shadow:0 0 0 0 rgba(201,168,76,.7)}60%{box-shadow:0 0 0 9px rgba(201,168,76,0)}}
+.kicker-text{font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+h1.hero-h{
+  font-family:var(--serif);
+  font-size:clamp(3.8rem,8.5vw,8.5rem);
+  font-weight:300;line-height:.95;letter-spacing:.01em;
+  margin-bottom:.6rem;
+}
+h1.hero-h .solid{display:block;color:var(--white)}
+h1.hero-h .outline{
+  display:block;
+  -webkit-text-stroke:1px rgba(255,255,255,.2);
+  color:transparent;font-style:italic;font-weight:300;
+}
+h1.hero-h .gilded{
+  display:block;
+  background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold));
+  background-size:200% 100%;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:shimmer 4s linear infinite;
+}
+@keyframes shimmer{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+.hero-caption{
+  font-family:var(--serif);font-style:italic;font-size:1.15rem;font-weight:300;
+  letter-spacing:.08em;color:var(--gold);margin-bottom:1.75rem;
+  border-left:2px solid var(--gold);padding-left:1rem;
+  display:inline-block;
+}
+.hero-desc{font-size:.98rem;color:var(--muted);max-width:560px;line-height:1.95;font-weight:300;margin-bottom:2.75rem}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:4.5rem}
+.btn-primary{
+  background:linear-gradient(135deg,var(--gold),var(--gold3));
+  color:var(--ink);padding:.9rem 2.4rem;border-radius:3px;
+  font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;
+  box-shadow:0 0 32px rgba(201,168,76,.4);
+  transition:box-shadow .3s,transform .2s;
+  position:relative;overflow:hidden;
+}
+.btn-primary::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,0);transition:background .2s}
+.btn-primary:hover{box-shadow:0 0 52px rgba(201,168,76,.65);transform:translateY(-2px)}
+.btn-secondary{
+  border:1px solid rgba(255,255,255,.18);color:var(--white);
+  padding:.9rem 2.4rem;border-radius:3px;
+  font-size:.75rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;
+  background:rgba(255,255,255,.04);backdrop-filter:blur(8px);
+  transition:all .25s;
+}
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.07);transform:translateY(-2px)}
+.hero-stats{
+  display:flex;gap:0;
+  border:1px solid rgba(201,168,76,.2);border-radius:8px;overflow:hidden;
+  background:rgba(201,168,76,.05);backdrop-filter:blur(16px);
+  max-width:540px;
+}
+.hs{flex:1;padding:1.4rem 1.6rem;border-right:1px solid rgba(201,168,76,.15);position:relative}
+.hs:last-child{border-right:none}
+.hs::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent)}
+.hs-n{font-family:var(--serif);font-size:2.3rem;font-weight:600;color:var(--gold);display:block;line-height:1}
+.hs-l{font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-top:.3rem;display:block}
+
+/* ══ SHARED ══ */
+section{padding:7rem 5vw;position:relative}
+.lbl{display:inline-flex;align-items:center;gap:.6rem;font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem}
+.lbl::before{content:'';width:28px;height:1px;background:var(--gold);display:block}
+.sec-h{font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.6rem);font-weight:300;letter-spacing:.01em;line-height:1.1;margin-bottom:1.25rem;color:var(--white)}
+.sec-sub{font-size:.93rem;color:var(--muted);line-height:1.9;font-weight:300;max-width:500px}
+.gold-line{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0;border:none}
+
+/* ══ ABOUT ══ */
+#about{background:var(--ink2)}
+.about-g{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.about-img-wrap{position:relative}
+.about-img{
+  width:100%;aspect-ratio:4/5;border-radius:12px;overflow:hidden;
+  position:relative;
+  box-shadow:0 24px 80px rgba(0,0,0,.6);
+}
+.about-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 6s ease}
+.about-img:hover img{transform:scale(1.04)}
+.about-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(8,9,12,.7) 0%,transparent 50%);
+}
+.about-badge{
+  position:absolute;bottom:-1.75rem;right:-1.75rem;
+  background:linear-gradient(135deg,var(--gold),var(--gold3));
+  border-radius:10px;padding:1.4rem 1.75rem;
+  box-shadow:0 12px 40px rgba(201,168,76,.4);
+  text-align:center;
+}
+.about-badge strong{font-family:var(--serif);font-size:2.4rem;font-weight:700;color:var(--ink);display:block;line-height:1}
+.about-badge span{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(8,9,12,.6)}
+.about-text .sec-sub{max-width:100%;margin-bottom:2rem}
+.about-caption{font-family:var(--serif);font-style:italic;font-size:1.4rem;font-weight:300;color:var(--gold);margin-bottom:1.5rem;line-height:1.4}
+.pillars{display:flex;flex-direction:column;gap:.85rem;margin-top:2rem}
+.pillar{
+  display:flex;gap:1rem;align-items:flex-start;
+  padding:1.1rem 1.25rem;border:1px solid var(--gb);border-radius:8px;
+  transition:border-color .25s,transform .25s,background .25s;
+  background:var(--glass);
+}
+.pillar:hover{border-color:rgba(201,168,76,.4);transform:translateX(5px);background:rgba(201,168,76,.04)}
+.pillar-icon{width:38px;height:38px;min-width:38px;border-radius:6px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.pillar-t{font-weight:600;font-size:.87rem;margin-bottom:.18rem}
+.pillar-d{font-size:.79rem;color:var(--muted);line-height:1.6}
+
+/* ══ SERVICES ══ */
+#services{background:var(--ink)}
+.svc-hdr{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:end;margin-bottom:4rem}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.sc{
+  border-radius:12px;overflow:hidden;position:relative;
+  border:1px solid var(--gb);background:var(--glass);
+  transition:transform .35s,box-shadow .35s,border-color .35s;
+  cursor:default;
+  display:flex;flex-direction:column;
+}
+.sc:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(0,0,0,.5);border-color:rgba(201,168,76,.35)}
+.sc-img{width:100%;height:180px;overflow:hidden;position:relative;flex-shrink:0}
+.sc-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;display:block}
+.sc:hover .sc-img img{transform:scale(1.08)}
+.sc-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(8,9,12,.8))}
+.sc-body{padding:1.5rem 1.5rem 1.75rem;flex:1;display:flex;flex-direction:column}
+.sc-icon{font-size:1.6rem;margin-bottom:.7rem;display:block;filter:drop-shadow(0 0 8px rgba(201,168,76,.4))}
+.sc-name{font-family:var(--serif);font-size:1.15rem;font-weight:600;letter-spacing:.02em;margin-bottom:.5rem;color:var(--white)}
+.sc-desc{font-size:.8rem;color:var(--muted);line-height:1.75;flex:1}
+.sc-bar{height:2px;background:linear-gradient(90deg,var(--gold),var(--gold3));margin-top:1.25rem;transform:scaleX(0);transform-origin:left;transition:transform .4s;border-radius:1px}
+.sc:hover .sc-bar{transform:scaleX(1)}
+/* wide card */
+.sc-wide{grid-column:span 3;flex-direction:row;align-items:stretch}
+.sc-wide .sc-img{width:380px;min-width:380px;height:auto}
+.sc-wide .sc-body{padding:2.25rem 2.5rem}
+.sc-wide .sc-name{font-size:1.5rem;margin-bottom:.6rem}
+.sc-wide .sc-desc{max-width:480px;font-size:.85rem}
+
+/* ══ SECTORS ══ */
+#sectors{
+  background:var(--ink2);overflow:hidden;
+}
+.sec-hdr2{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:end;margin-bottom:4rem}
+.sector-g{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem}
+.sector{
+  background:var(--glass);border:1px solid var(--gb);border-radius:12px;
+  padding:1.75rem 1.25rem;
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:.8rem;
+  transition:transform .3s,border-color .3s,background .3s,box-shadow .3s;
+  position:relative;overflow:hidden;
+}
+.sector::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,.09),transparent);opacity:0;transition:opacity .3s;border-radius:12px}
+.sector:hover{transform:translateY(-7px);border-color:rgba(201,168,76,.45);box-shadow:0 16px 48px rgba(201,168,76,.12)}
+.sector:hover::before{opacity:1}
+.sector-e{font-size:2.1rem;transition:transform .3s;filter:drop-shadow(0 0 10px rgba(201,168,76,.25))}
+.sector:hover .sector-e{transform:scale(1.2) rotate(-5deg)}
+.sector-l{font-size:.76rem;font-weight:500;letter-spacing:.02em;color:rgba(255,255,255,.75);line-height:1.45}
+
+/* ══ GALLERY / SHOWCASE ══ */
+#showcase{background:var(--ink);overflow:hidden}
+.showcase-hdr{text-align:center;margin-bottom:3.5rem}
+.showcase-hdr .sec-sub{max-width:560px;margin:0 auto}
+.gallery{
+  display:grid;
+  grid-template-columns:1.6fr 1fr 1fr;
+  grid-template-rows:280px 280px;
+  gap:1rem;
+}
+.gal-item{border-radius:10px;overflow:hidden;position:relative;cursor:default}
+.gal-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.gal-item:hover img{transform:scale(1.06)}
+.gal-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(8,9,12,.75) 0%,rgba(8,9,12,.1) 60%)}
+.gal-item:nth-child(1){grid-row:span 2}
+.gal-caption{position:absolute;bottom:1.25rem;left:1.25rem;z-index:2}
+.gal-caption span{font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.25rem}
+.gal-caption p{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--white)}
+
+/* ══ WHY ══ */
+#why{background:var(--ink2)}
+.why-g{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.mc{
+  border-radius:10px;padding:2rem 1.75rem;
+  border:1px solid var(--gb);background:var(--glass);
+  transition:transform .25s,border-color .25s,box-shadow .25s;
+  position:relative;overflow:hidden;
+}
+.mc::after{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--gold),transparent)}
+.mc:hover{transform:scale(1.04);border-color:rgba(201,168,76,.4);box-shadow:0 0 30px rgba(201,168,76,.1)}
+.mc-n{font-family:var(--serif);font-size:3rem;font-weight:600;color:var(--gold);display:block;line-height:1;margin-bottom:.3rem}
+.mc-l{font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.why-pts{margin-top:2.75rem;display:flex;flex-direction:column;gap:1.5rem}
+.wp{display:flex;gap:1.25rem;align-items:flex-start}
+.wp-n{font-family:var(--serif);font-size:2.2rem;font-weight:600;color:var(--gold);line-height:1;min-width:2.5rem}
+.wp-title{font-weight:600;font-size:.9rem;margin-bottom:.25rem}
+.wp-desc{font-size:.8rem;color:var(--muted);line-height:1.7}
+
+/* ══ CONTACT ══ */
+#contact{background:var(--ink);overflow:hidden}
+.contact-bg{
+  position:absolute;top:-200px;right:-200px;width:700px;height:700px;
+  background:radial-gradient(circle,rgba(201,168,76,.06) 0%,transparent 65%);
+  pointer-events:none;
+}
+.contact-g{display:grid;grid-template-columns:1fr 1.1fr;gap:5rem;align-items:start;position:relative;z-index:2}
+.contact-info .sec-sub{max-width:100%;margin-bottom:2.5rem}
+.c-list{display:flex;flex-direction:column}
+.c-row{
+  display:flex;align-items:center;gap:1.1rem;
+  padding:1.1rem 0;border-bottom:1px solid var(--gb);
+}
+.c-ico{width:42px;height:42px;min-width:42px;border-radius:8px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.c-info strong{display:block;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:.15rem}
+.c-info a{color:var(--white);text-decoration:none;font-size:.9rem;transition:color .2s}
+.c-info a:hover{color:var(--gold)}
+.c-info span{font-size:.9rem;color:var(--muted)}
+
+/* form card */
+.form-card{
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--gb);border-radius:16px;
+  padding:2.75rem;
+  position:relative;overflow:hidden;
+  backdrop-filter:blur(20px);
+}
+.form-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent)}
+.form-title{font-family:var(--serif);font-size:1.6rem;font-weight:300;margin-bottom:1.75rem;color:var(--white)}
+.form-title span{color:var(--gold);font-style:italic}
+form{display:flex;flex-direction:column;gap:1rem}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.fg{display:flex;flex-direction:column;gap:.4rem}
+label{font-size:.63rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+input,textarea,select{
+  width:100%;font-family:var(--sans);font-size:.88rem;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.1);border-radius:6px;
+  padding:.82rem 1rem;color:var(--white);
+  transition:border-color .2s,box-shadow .2s,background .2s;
+  outline:none;appearance:none;
+}
+input::placeholder,textarea::placeholder{color:rgba(255,255,255,.22)}
+input:focus,textarea:focus,select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,.12);background:rgba(201,168,76,.04)}
+select option{background:var(--ink2);color:var(--white)}
+textarea{resize:vertical;min-height:110px}
+.f-send{
+  background:linear-gradient(135deg,var(--gold),var(--gold3));
+  color:var(--ink);border:none;
+  padding:1rem 2.4rem;border-radius:5px;
+  font-family:var(--sans);font-size:.75rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+  cursor:pointer;align-self:flex-start;
+  box-shadow:0 0 28px rgba(201,168,76,.35);
+  transition:box-shadow .25s,transform .2s;
+  display:flex;align-items:center;gap:.6rem;
+}
+.f-send:hover{box-shadow:0 0 48px rgba(201,168,76,.6);transform:translateY(-2px)}
+.f-send svg{width:14px;height:14px;flex-shrink:0}
+.f-note{font-size:.72rem;color:var(--dim);margin-top:.25rem}
+
+/* success state */
+.success-msg{
+  display:none;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;gap:1rem;padding:3rem 1rem;
+}
+.success-msg .check{font-size:3rem}
+.success-msg h3{font-family:var(--serif);font-size:1.6rem;font-weight:300;color:var(--white)}
+.success-msg p{font-size:.85rem;color:var(--muted)}
+
+/* ══ FOOTER ══ */
+footer{background:var(--ink2);border-top:1px solid var(--gb);padding:4rem 5vw 2rem}
+.foot-top{display:grid;grid-template-columns:1.8fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid var(--gb);margin-bottom:2rem}
+.foot-brand .logo-sq{margin-bottom:1rem}
+.foot-name{font-family:var(--serif);font-size:1.1rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem}
+.foot-tag{font-family:var(--serif);font-style:italic;font-size:.85rem;color:var(--gold);margin-bottom:.75rem}
+.foot-desc{font-size:.8rem;color:var(--muted);line-height:1.8;max-width:270px;font-weight:300}
+.foot-col h4{font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:1.25rem}
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.foot-col a{font-size:.8rem;color:var(--muted);text-decoration:none;transition:color .2s;display:block}
+.foot-col a:hover{color:var(--gold)}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem}
+.foot-bottom p{font-size:.75rem;color:var(--dim)}
+.foot-bottom a{font-size:.75rem;color:var(--dim);text-decoration:none;transition:color .2s}
+.foot-bottom a:hover{color:var(--gold)}
+
+/* ══ REVEAL ══ */
+.r{opacity:0;transform:translateY(34px);transition:opacity .75s ease,transform .75s ease}
+.rl{opacity:0;transform:translateX(-34px);transition:opacity .75s ease,transform .75s ease}
+.rr{opacity:0;transform:translateX(34px);transition:opacity .75s ease,transform .75s ease}
+.r.v,.rl.v,.rr.v{opacity:1;transform:none}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:1100px){
+  .sc-wide{grid-column:span 3;flex-direction:column}
+  .sc-wide .sc-img{width:100%;height:220px}
+  .gallery{grid-template-columns:1fr 1fr;grid-template-rows:220px 220px}
+  .gal-item:nth-child(1){grid-row:span 1}
+  .sector-g{grid-template-columns:repeat(4,1fr)}
+}
+@media(max-width:900px){
+  .nav-links,.nav-cta{display:none}
+  .ham{display:flex}
+  .about-g,.svc-hdr,.sec-hdr2,.contact-g,.why-g,.foot-top{grid-template-columns:1fr;gap:2.5rem}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .sc-wide{grid-column:span 2}
+  .gallery{grid-template-columns:1fr 1fr;grid-template-rows:220px 220px}
+  .sector-g{grid-template-columns:repeat(3,1fr)}
+  .about-badge{bottom:-1rem;right:-.75rem}
+}
+@media(max-width:600px){
+  section{padding:5rem 5vw}
+  .svc-grid{grid-template-columns:1fr}
+  .sc-wide{grid-column:span 1}
+  .gallery{grid-template-columns:1fr}
+  .sector-g{grid-template-columns:1fr 1fr}
+  .metrics{grid-template-columns:1fr 1fr}
+  .f2{grid-template-columns:1fr}
+  .hero-stats{flex-direction:column;max-width:100%}
+  .hs{border-right:none;border-bottom:1px solid rgba(201,168,76,.15)}
+  .hs:last-child{border-bottom:none}
+}
+</style>
 </head>
-
 <body>
+<div id="cur"></div>
+<div id="cur-o"></div>
+<canvas id="particles"></canvas>
 
-    <header class="nav">
-        <h2>Rans Synergies</h2>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="services.html">Services</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </header>
+<!-- ══ NAV ══ -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">
+    <div class="logo-sq">RS</div>
+    <div class="logo-words">
+      <span class="logo-name">Rans Synergies</span>
+      <span class="logo-tag">Connecting Ideas | Creating Values</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#sectors">Sectors</a></li>
+    <li><a href="#showcase">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get in Touch</a>
+  <button class="ham" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
 
-    <section class="hero">
-        <h1>Connecting Ideas | Creating Values</h1>
-        <p>Powering growth through partnerships, operations, and innovation.</p>
-        <a href="contact.html" class="btn">Get Started</a>
-    </section>
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-kicker r"><div class="kicker-dot"></div><span class="kicker-text">Integrated Business Solutions</span></div>
+    <h1 class="hero-h r">
+      <span class="solid">RANS</span>
+      <span class="outline">Synergies</span>
+      <span class="gilded">Limited</span>
+    </h1>
+    <p class="hero-caption r">Connecting Ideas | Creating Values</p>
+    <p class="hero-desc r">A multi-disciplinary firm delivering vendor services, consultancy, HR, IT operations, AI solutions, mechanical fabrication, and civil construction — all under one trusted partner.</p>
+    <div class="hero-btns r">
+      <a href="#services" class="btn-primary">Explore Services</a>
+      <a href="#contact" class="btn-secondary">Talk to Us →</a>
+    </div>
+    <div class="hero-stats r">
+      <div class="hs"><span class="hs-n">7+</span><span class="hs-l">Core Services</span></div>
+      <div class="hs"><span class="hs-n">10+</span><span class="hs-l">Sectors</span></div>
+      <div class="hs"><span class="hs-n">360°</span><span class="hs-l">Coverage</span></div>
+    </div>
+  </div>
+</section>
+<hr class="gold-line"/>
 
-    <section class="highlight">
-        <h2>Our Expertise</h2>
-        <div class="cards">
-            <div class="card">Vendor Services</div>
-            <div class="card">Consultancy</div>
-            <div class="card">IT Operations</div>
-            <div class="card">AI Solutions</div>
+<!-- ══ ABOUT ══ -->
+<section id="about">
+  <div class="about-g">
+    <div class="about-img-wrap rl">
+      <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=900&q=80" alt="Rans Synergies team at work" loading="lazy"/>
+      </div>
+      <div class="about-badge"><strong>RS</strong><span>Est. Hyderabad</span></div>
+    </div>
+    <div class="rr">
+      <span class="lbl">Who We Are</span>
+      <h2 class="sec-h">Built for Modern<br/><em>Business Complexity</em></h2>
+      <p class="about-caption">"Connecting Ideas | Creating Values"</p>
+      <p class="sec-sub" style="max-width:100%;margin-bottom:1.5rem">Rans Synergies is a diverse, integrated solutions company combining technical expertise, human capital, and strategic intelligence. We don't just advise — we execute alongside you across industries that matter.</p>
+      <div class="pillars">
+        <div class="pillar"><div class="pillar-icon">🏗️</div><div><p class="pillar-t">End-to-End Delivery</p><p class="pillar-d">From groundwork to digital transformation — full project lifecycle management.</p></div></div>
+        <div class="pillar"><div class="pillar-icon">🤝</div><div><p class="pillar-t">Strategic Partnership</p><p class="pillar-d">We embed with your team rather than deliver from the outside.</p></div></div>
+        <div class="pillar"><div class="pillar-icon">⚡</div><div><p class="pillar-t">Agile Execution</p><p class="pillar-d">Fast-moving, adaptive teams that respond to your timelines and budgets.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<hr class="gold-line" style="background:linear-gradient(90deg,transparent,rgba(201,168,76,.5),transparent)"/>
+
+<!-- ══ SERVICES ══ -->
+<section id="services">
+  <div class="svc-hdr">
+    <div class="r"><span class="lbl">What We Offer</span><h2 class="sec-h">Seven Pillars<br/>of Capability</h2></div>
+    <p class="sec-sub r">Each service line is staffed by specialists with deep operational experience — delivering quality at every level of engagement, every time.</p>
+  </div>
+  <div class="svc-grid r">
+    <div class="sc">
+      <div class="sc-img"><img src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=600&q=75" alt="Vendor Services" loading="lazy"/></div>
+      <div class="sc-body"><span class="sc-icon">🛒</span><p class="sc-name">Vendor Services</p><p class="sc-desc">Sourcing, procurement, and vendor management ensuring supply chain continuity and measurable cost efficiency across all categories.</p><div class="sc-bar"></div></div>
+    </div>
+    <div class="sc">
+      <div class="sc-img"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=75" alt="Consultancy" loading="lazy"/></div>
+      <div class="sc-body"><span class="sc-icon">📋</span><p class="sc-name">Consultancy Services</p><p class="sc-desc">Strategic advisory and project consultancy tailored to your industry — from in-depth analysis through to hands-on execution.</p><div class="sc-bar"></div></div>
+    </div>
+    <div class="sc">
+      <div class="sc-img"><img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&q=75" alt="Human Resources" loading="lazy"/></div>
+      <div class="sc-body"><span class="sc-icon">👥</span><p class="sc-name">Human Resource</p><p class="sc-desc">Recruitment, staffing, HR management, and workforce planning — connecting you with the right talent at the right time.</p><div class="sc-bar"></div></div>
+    </div>
+    <div class="sc">
+      <div class="sc-img"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=75" alt="IT Operations" loading="lazy"/></div>
+      <div class="sc-body"><span class="sc-icon">💻</span><p class="sc-name">IT Operations</p><p class="sc-desc">Managed IT services, infrastructure management, network support, and systems integration to keep your technology reliable.</p><div class="sc-bar"></div></div>
+    </div>
+    <div class="sc">
+      <div class="sc-img"><img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&q=75" alt="AI Solutions" loading="lazy"/></div>
+      <div class="sc-body"><span class="sc-icon">🤖</span><p class="sc-name">Artificial Intelligence</p><p class="sc-desc">AI strategy, implementation, and automation solutions to help businesses operate smarter, faster, and with greater precision.</p><div class="sc-bar"></div></div>
+    </div>
+    <div class="sc">
+      <div class="sc-img"><img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=75" alt="Mechanical Fabrication" loading="lazy"/></div>
+      <div class="sc-body"><span class="sc-icon">⚙️</span><p class="sc-name">Mechanical Fabrication</p><p class="sc-desc">Custom metal and mechanical fabrication, precision engineering, and component manufacturing to strict industrial standards.</p><div class="sc-bar"></div></div>
+    </div>
+    <div class="sc sc-wide">
+      <div class="sc-img"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=75" alt="Civil Construction" loading="lazy"/></div>
+      <div class="sc-body">
+        <span class="sc-icon">🏗️</span>
+        <p class="sc-name">Civil Construction</p>
+        <p class="sc-desc">Full-scope civil construction — commercial buildings, infrastructure, roads, and water systems. Licensed, insured, and delivered on schedule and within budget.</p>
+        <div class="sc-bar"></div>
+        <a href="#contact" style="margin-top:1.5rem;display:inline-block;border:1px solid rgba(201,168,76,.45);color:var(--gold);padding:.6rem 1.4rem;border-radius:4px;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:all .2s;background:rgba(201,168,76,.06)" onmouseover="this.style.background='rgba(201,168,76,.15)';this.style.borderColor='var(--gold)'" onmouseout="this.style.background='rgba(201,168,76,.06)';this.style.borderColor='rgba(201,168,76,.45)'">Start a Project →</a>
+      </div>
+    </div>
+  </div>
+</section>
+<hr class="gold-line"/>
+
+<!-- ══ SECTORS ══ -->
+<section id="sectors">
+  <div class="sec-hdr2">
+    <div class="r"><span class="lbl">Industries We Serve</span><h2 class="sec-h">Active Across<br/><em>10 Vital Sectors</em></h2></div>
+    <p class="sec-sub r">Our multi-disciplinary team brings relevant expertise to each sector — understanding unique demands, regulations, and operational timelines.</p>
+  </div>
+  <div class="sector-g">
+    <div class="sector r"><span class="sector-e">🥩</span><span class="sector-l">Food Supply &amp; Distribution</span></div>
+    <div class="sector r"><span class="sector-e">⚡</span><span class="sector-l">Energy Solutions</span></div>
+    <div class="sector r"><span class="sector-e">📦</span><span class="sector-l">Component &amp; Product Distribution</span></div>
+    <div class="sector r"><span class="sector-e">🔧</span><span class="sector-l">General Services &amp; Contracting</span></div>
+    <div class="sector r"><span class="sector-e">🏗️</span><span class="sector-l">Construction &amp; Infrastructure</span></div>
+    <div class="sector r"><span class="sector-e">💧</span><span class="sector-l">Water &amp; Sanitation Solutions</span></div>
+    <div class="sector r"><span class="sector-e">🌾</span><span class="sector-l">Agriculture &amp; Farming Inputs</span></div>
+    <div class="sector r"><span class="sector-e">🚛</span><span class="sector-l">Logistics &amp; Supply Chain</span></div>
+    <div class="sector r"><span class="sector-e">💻</span><span class="sector-l">ICT &amp; Digital Solutions</span></div>
+    <div class="sector r"><span class="sector-e">🏥</span><span class="sector-l">Health &amp; Safety Supplies</span></div>
+  </div>
+</section>
+<hr class="gold-line" style="background:linear-gradient(90deg,transparent,rgba(201,168,76,.5),transparent)"/>
+
+<!-- ══ SHOWCASE ══ -->
+<section id="showcase">
+  <div class="showcase-hdr r">
+    <span class="lbl" style="justify-content:center">Our Work in Action</span>
+    <h2 class="sec-h">Delivering Across<br/><em>Every Dimension</em></h2>
+    <p class="sec-sub">From steel fabrication floors to digital control rooms — a glimpse into the world Rans Synergies operates in.</p>
+  </div>
+  <div class="gallery r">
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1565008576549-57569a49f3d2?w=900&q=80" alt="Construction site" loading="lazy"/>
+      <div class="gal-caption"><span>Construction</span><p>Infrastructure at Scale</p></div>
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=75" alt="IT and Technology" loading="lazy"/>
+      <div class="gal-caption"><span>IT &amp; AI</span><p>Digital Excellence</p></div>
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=75" alt="Mechanical engineering" loading="lazy"/>
+      <div class="gal-caption"><span>Fabrication</span><p>Precision Engineering</p></div>
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=75" alt="Consulting team" loading="lazy"/>
+      <div class="gal-caption"><span>Consultancy</span><p>Strategic Advisory</p></div>
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=600&q=75" alt="Logistics" loading="lazy"/>
+      <div class="gal-caption"><span>Logistics</span><p>Supply Chain Mastery</p></div>
+    </div>
+  </div>
+</section>
+<hr class="gold-line"/>
+
+<!-- ══ WHY ══ -->
+<section id="why">
+  <div class="why-g">
+    <div class="rl">
+      <span class="lbl">Why Choose Us</span>
+      <h2 class="sec-h">More Than a<br/><em>Contractor</em></h2>
+      <p class="sec-sub">When you engage Rans Synergies, you get a dedicated team that is accountable, transparent, and relentlessly results-oriented.</p>
+      <div class="why-pts">
+        <div class="wp"><span class="wp-n">01</span><div><p class="wp-title">Integrated Expertise</p><p class="wp-desc">Seven service lines working in sync — fewer handoffs, fewer risks, faster results.</p></div></div>
+        <div class="wp"><span class="wp-n">02</span><div><p class="wp-title">Sector Intelligence</p><p class="wp-desc">Experience across 10 industries gives us context that generalists simply don't have.</p></div></div>
+        <div class="wp"><span class="wp-n">03</span><div><p class="wp-title">Scalable Solutions</p><p class="wp-desc">From small contracts to large-scale infrastructure — we scale with your ambition.</p></div></div>
+      </div>
+    </div>
+    <div class="metrics rr">
+      <div class="mc"><span class="mc-n">10+</span><span class="mc-l">Sectors Served</span></div>
+      <div class="mc"><span class="mc-n">7</span><span class="mc-l">Core Services</span></div>
+      <div class="mc"><span class="mc-n">360°</span><span class="mc-l">Delivery Scope</span></div>
+      <div class="mc"><span class="mc-n">1</span><span class="mc-l">Trusted Partner</span></div>
+    </div>
+  </div>
+</section>
+<hr class="gold-line"/>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div class="contact-bg"></div>
+  <div class="contact-g">
+    <div class="rl">
+      <span class="lbl">Get in Touch</span>
+      <h2 class="sec-h">Let's Build<br/><em>Together</em></h2>
+      <p class="sec-sub" style="max-width:100%;margin-bottom:2.5rem">Whether you have a specific project in mind or want to explore how Rans Synergies can support your business, we'd love to hear from you.</p>
+      <div class="c-list">
+        <div class="c-row"><div class="c-ico">✉️</div><div class="c-info"><strong>Email</strong><a href="mailto:info@ranssynergies.com">info@ranssynergies.com</a></div></div>
+        <div class="c-row"><div class="c-ico">📍</div><div class="c-info"><strong>Location</strong><span>Hyderabad, Telangana, India</span></div></div>
+        <div class="c-row"><div class="c-ico">🌐</div><div class="c-info"><strong>Website</strong><span>ranssynergies.com</span></div></div>
+      </div>
+    </div>
+    <div class="rr">
+      <div class="form-card">
+        <p class="form-title">Send us a <span>message</span></p>
+        <!-- Formspree (free) — sign up at formspree.io, create a form, replace YOUR_FORM_ID -->
+        <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <div class="f2">
+            <div class="fg"><label for="fname">Full Name</label><input type="text" id="fname" name="name" placeholder="John Smith" required/></div>
+            <div class="fg"><label for="femail">Email Address</label><input type="email" id="femail" name="email" placeholder="your@email.com" required/></div>
+          </div>
+          <div class="fg"><label for="fcompany">Company / Organisation</label><input type="text" id="fcompany" name="company" placeholder="Your company name"/></div>
+          <div class="fg">
+            <label for="fservice">Service of Interest</label>
+            <select id="fservice" name="service">
+              <option value="">Select a service…</option>
+              <option>Vendor Services</option>
+              <option>Consultancy Services</option>
+              <option>Human Resource</option>
+              <option>IT Operations</option>
+              <option>Artificial Intelligence</option>
+              <option>Mechanical Fabrication</option>
+              <option>Civil Construction</option>
+              <option>Multiple Services</option>
+              <option>Other / Not sure</option>
+            </select>
+          </div>
+          <div class="fg"><label for="fmsg">Message</label><textarea id="fmsg" name="message" placeholder="Tell us about your project, requirements, or any questions…" required></textarea></div>
+          <button type="submit" class="f-send">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
+            Send Message
+          </button>
+          <p class="f-note">We respond within 1 business day. Your information is kept confidential.</p>
+        </form>
+        <div class="success-msg" id="success">
+          <div class="check">✅</div>
+          <h3>Message Received!</h3>
+          <p>Thank you for reaching out. Our team will get back to you within one business day.</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <footer>
-        info@ranssynergies.com
-    </footer>
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="foot-top">
+    <div>
+      <div class="logo-sq foot-brand" style="margin-bottom:1rem">RS</div>
+      <p class="foot-name">Rans Synergies</p>
+      <p class="foot-tag">Connecting Ideas | Creating Values</p>
+      <p class="foot-desc">Integrated business solutions spanning vendor services, consultancy, HR, IT operations, AI, mechanical fabrication, and civil construction. Based in Hyderabad.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Vendor Services</a></li>
+        <li><a href="#services">Consultancy</a></li>
+        <li><a href="#services">Human Resource</a></li>
+        <li><a href="#services">IT Operations</a></li>
+        <li><a href="#services">AI Solutions</a></li>
+        <li><a href="#services">Mech. Fabrication</a></li>
+        <li><a href="#services">Civil Construction</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#sectors">Sectors</a></li>
+        <li><a href="#showcase">Gallery</a></li>
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="mailto:info@ranssynergies.com">info@ranssynergies.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <p>© 2025 Rans Synergies. All rights reserved.</p>
+    <a href="mailto:info@ranssynergies.com">info@ranssynergies.com</a>
+  </div>
+</footer>
 
+<script>
+/* ── Cursor ── */
+const cur=document.getElementById('cur'),curo=document.getElementById('cur-o');
+let mx=0,my=0,ox=0,oy=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function loop(){ox+=(mx-ox)*.1;oy+=(my-oy)*.1;curo.style.left=ox+'px';curo.style.top=oy+'px';requestAnimationFrame(loop)})();
+
+/* ── Particles ── */
+const cvs=document.getElementById('particles');
+const ctx=cvs.getContext('2d');
+let W,H,pts=[];
+function resize(){W=cvs.width=window.innerWidth;H=cvs.height=window.innerHeight}
+resize();window.addEventListener('resize',resize);
+class Pt{constructor(){this.reset()}reset(){this.x=Math.random()*W;this.y=Math.random()*H;this.r=Math.random()*.8+.3;this.sp=Math.random()*.25+.05;this.op=Math.random()*.4+.1;this.dx=(Math.random()-.5)*.15}update(){this.y-=this.sp;this.x+=this.dx;if(this.y<-5)this.reset();this.y=this.y<-5?H:this.y}draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=`rgba(201,168,76,${this.op})`;ctx.fill()}}
+for(let i=0;i<80;i++)pts.push(new Pt());
+(function anim(){ctx.clearRect(0,0,W,H);pts.forEach(p=>{p.update();p.draw()});requestAnimationFrame(anim)})();
+
+/* ── Nav scroll ── */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>60)});
+
+/* ── Scroll reveal ── */
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('v'),i*70);obs.unobserve(e.target)}});
+},{threshold:.07});
+document.querySelectorAll('.r,.rl,.rr').forEach(el=>obs.observe(el));
+
+/* ── Mobile menu ── */
+const ham=document.getElementById('ham'),nlinks=document.querySelector('.nav-links');
+ham.addEventListener('click',()=>{
+  const open=nlinks.style.display==='flex';
+  nlinks.style.cssText=open?'display:none':'display:flex;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:rgba(8,9,12,.96);padding:1.75rem 5vw;gap:1.3rem;border-bottom:1px solid rgba(201,168,76,.15);backdrop-filter:blur(20px)';
+});
+nlinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nlinks.style.display='none'}));
+
+/* ── Form success ── */
+const form=document.getElementById('contact-form'),suc=document.getElementById('success');
+form.addEventListener('submit',async e=>{
+  e.preventDefault();
+  const btn=form.querySelector('.f-send');
+  btn.textContent='Sending…';btn.disabled=true;
+  try{
+    const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
+    if(res.ok){form.style.display='none';suc.style.display='flex'}
+    else{btn.textContent='Try Again';btn.disabled=false}
+  }catch{btn.textContent='Try Again';btn.disabled=false}
+});
+</script>
 </body>
-
 </html>
