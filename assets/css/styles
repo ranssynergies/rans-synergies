@@ -1,0 +1,48 @@
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: radial-gradient(circle, #0f2027, #203a43, #2c5364);
+  color: white;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background: rgba(0,0,0,0.5);
+}
+
+.nav a {
+  margin: 0 10px;
+  color: #ddd;
+  text-decoration: none;
+}
+
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.hero.small {
+  padding: 60px 20px;
+}
+
+.btn {
+  padding: 12px 20px;
+  background: #4fd1ff;
+  color: black;
+  border-radius: 10px;
+}
+
+.cards, .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  padding: 40px;
+  gap: 20px;
+}
+
+.card {
+  padding: 20px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 15px;
+}
