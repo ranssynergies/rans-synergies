@@ -6,11 +6,13 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>Rans Synergies — Connecting Ideas | Creating Values</title>
   <meta name="description"
-    content="Rans Synergies — Integrated business solutions spanning vendor services, consultancy, HR, IT, AI, mechanical fabrication and civil construction." />
+    content="Rans Synergies — Assembly, vendor, consultancy, HR, IT, AI, fabrication and civil construction services. Hyderabad, India." />
+  <!-- EmailJS — sends directly to your inbox, no backend needed -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap"
     rel="stylesheet" />
   <style>
     *,
@@ -22,39 +24,40 @@
     }
 
     :root {
-      --ink: #08090c;
-      --ink2: #0f1117;
-      --gold: #c9a84c;
-      --gold2: #e8c86d;
-      --gold3: #a07830;
-      --glow: rgba(201, 168, 76, 0.18);
-      --glass: rgba(255, 255, 255, 0.04);
-      --gb: rgba(255, 255, 255, 0.519);
-      --white: #fff;
-      --off: #f5f0e8;
-      --muted: rgba(255, 255, 255, 0.5);
-      --dim: rgba(255, 255, 255, 0.2);
-      --serif: 'Cormorant Garamond', Georgia, serif;
-      --sans: 'Jost', system-ui, sans-serif;
-      --nav: 72px;
+      --bg: #07080d;
+      --bg2: #0b0d16;
+      --bg3: #0f1120;
+      --gold: #d4a843;
+      --gold2: #f0c96a;
+      --gold3: #a07828;
+      --goldglow: rgba(212, 168, 67, .2);
+      --red: #e84040;
+      --glass: rgba(255, 255, 255, .035);
+      --gb: rgba(255, 255, 255, .07);
+      --gb2: rgba(255, 255, 255, .04);
+      --w: #fff;
+      --muted: rgba(255, 255, 255, .5);
+      --dim: rgba(255, 255, 255, .22);
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+      --nav: 70px;
     }
 
     html {
-      scroll-behavior: smooth;
-      font-size: 16px
+      scroll-behavior: smooth
     }
 
     body {
       font-family: var(--sans);
-      background: var(--ink);
-      color: var(--white);
+      background: var(--bg);
+      color: var(--w);
       overflow-x: hidden;
       line-height: 1.7
     }
 
     ::selection {
       background: var(--gold);
-      color: var(--ink)
+      color: var(--bg)
     }
 
     ::-webkit-scrollbar {
@@ -62,7 +65,7 @@
     }
 
     ::-webkit-scrollbar-track {
-      background: var(--ink)
+      background: var(--bg)
     }
 
     ::-webkit-scrollbar-thumb {
@@ -70,128 +73,126 @@
       border-radius: 2px
     }
 
-    /* ══ CUSTOM CURSOR ══ */
-    #cur {
+    /* ═══ CURSOR ═══ */
+    #dot {
       position: fixed;
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       background: var(--gold);
       border-radius: 50%;
       pointer-events: none;
       z-index: 9999;
       transform: translate(-50%, -50%);
-      transition: width .15s, height .15s, background .15s;
+      transition: width .15s, height .15s;
       mix-blend-mode: screen
     }
 
-    #cur-o {
+    #ring {
       position: fixed;
-      width: 32px;
-      height: 32px;
-      border: 1px solid rgba(201, 168, 76, .5);
+      width: 30px;
+      height: 30px;
+      border: 1px solid rgba(212, 168, 67, .5);
       border-radius: 50%;
       pointer-events: none;
       z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: width .3s, height .3s, border-color .3s
+      transform: translate(-50%, -50%)
     }
 
     @media(hover:none) {
 
-      #cur,
-      #cur-o {
+      #dot,
+      #ring {
         display: none
+      }
+
+      body {
+        cursor: auto
       }
     }
 
-    /* ══ NAV ══ */
+    /* ═══ NAV ═══ */
     nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      inset: 0 0 auto;
       z-index: 800;
       height: var(--nav);
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 5vw;
-      transition: background .4s, backdrop-filter .4s, box-shadow .4s;
+      transition: background .4s, box-shadow .4s;
     }
 
-    nav.scrolled {
-      background: rgba(8, 9, 12, .92);
-      backdrop-filter: blur(24px) saturate(160%);
-      box-shadow: 0 1px 0 rgba(201, 168, 76, .15);
+    nav.sc {
+      background: rgba(7, 8, 13, .94);
+      backdrop-filter: blur(24px);
+      box-shadow: 0 1px 0 rgba(212, 168, 67, .12)
     }
 
-    .nav-logo {
+    .nl {
       display: flex;
       align-items: center;
       gap: .9rem;
       text-decoration: none
     }
 
-    .logo-sq {
-      width: 42px;
-      height: 42px;
-      border-radius: 6px;
+    .lm {
+      width: 40px;
+      height: 40px;
+      border-radius: 7px;
       background: linear-gradient(135deg, var(--gold), var(--gold3));
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: var(--serif);
-      font-weight: 700;
-      font-size: 1.15rem;
-      color: var(--ink);
-      letter-spacing: .03em;
-      box-shadow: 0 0 22px rgba(201, 168, 76, .45);
-      flex-shrink: 0;
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: var(--bg);
+      box-shadow: 0 0 20px var(--goldglow)
     }
 
-    .logo-words {
+    .lw {
       display: flex;
       flex-direction: column;
-      line-height: 1.15
+      line-height: 1.2
     }
 
-    .logo-name {
+    .ln {
       font-family: var(--serif);
-      font-weight: 600;
-      font-size: 1.05rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--white)
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: .05em;
+      color: var(--w);
     }
 
-    .logo-tag {
-      font-size: .58rem;
-      font-weight: 400;
-      letter-spacing: .16em;
+    .lt {
+      font-size: .52rem;
+      font-weight: 500;
+      letter-spacing: .18em;
       text-transform: uppercase;
       color: var(--gold);
-      opacity: .9
+      opacity: .85
     }
 
-    .nav-links {
+    .nv {
       display: flex;
-      gap: 2.4rem;
+      gap: 2.2rem;
       list-style: none
     }
 
-    .nav-links a {
+    .nv a {
       font-size: .72rem;
       font-weight: 500;
-      letter-spacing: .12em;
+      letter-spacing: .1em;
       text-transform: uppercase;
       color: var(--muted);
       text-decoration: none;
       transition: color .2s;
       position: relative;
-      padding-bottom: 2px
+      padding-bottom: 3px
     }
 
-    .nav-links a::after {
+    .nv a::after {
       content: '';
       position: absolute;
       bottom: 0;
@@ -203,36 +204,36 @@
       transition: transform .25s
     }
 
-    .nav-links a:hover {
-      color: var(--white)
+    .nv a:hover {
+      color: var(--w)
     }
 
-    .nav-links a:hover::after {
+    .nv a:hover::after {
       transform: scaleX(1)
     }
 
-    .nav-cta {
-      border: 1px solid rgba(201, 168, 76, .5);
+    .ncta {
+      border: 1px solid rgba(212, 168, 67, .45);
       color: var(--gold);
-      padding: .52rem 1.4rem;
-      border-radius: 3px;
-      font-size: .72rem;
+      padding: .5rem 1.3rem;
+      border-radius: 4px;
+      font-size: .7rem;
       font-weight: 600;
-      letter-spacing: .12em;
+      letter-spacing: .1em;
       text-transform: uppercase;
       text-decoration: none;
+      background: rgba(212, 168, 67, .06);
       transition: all .25s;
-      white-space: nowrap;
-      background: rgba(201, 168, 76, .06)
+      white-space: nowrap
     }
 
-    .nav-cta:hover {
+    .ncta:hover {
       background: var(--gold);
-      color: var(--ink);
-      box-shadow: 0 0 28px rgba(201, 168, 76, .5)
+      color: var(--bg);
+      box-shadow: 0 0 24px var(--goldglow)
     }
 
-    .ham {
+    .hm {
       display: none;
       flex-direction: column;
       gap: 5px;
@@ -242,39 +243,103 @@
       padding: 4px
     }
 
-    .ham span {
+    .hm span {
       display: block;
       width: 22px;
       height: 1.5px;
-      background: var(--white);
+      background: var(--w);
       border-radius: 1px;
       transition: all .3s
     }
 
-    /* ══ HERO ══ */
+    /* ═══ SECTION LABELS / TITLES ═══ */
+    section {
+      position: relative
+    }
+
+    .lbl {
+      display: inline-flex;
+      align-items: center;
+      gap: .65rem;
+      font-size: .64rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .85rem
+    }
+
+    .lbl::before {
+      content: '';
+      width: 26px;
+      height: 1px;
+      background: var(--gold);
+      display: block
+    }
+
+    .sh {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: .01em;
+      margin-bottom: 1.2rem
+    }
+
+    .sub {
+      font-size: .9rem;
+      color: var(--muted);
+      line-height: 1.9;
+      font-weight: 300;
+      max-width: 500px
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      border: none;
+      margin: 0
+    }
+
+    /* ═══ HERO ═══ */
     #hero {
-      position: relative;
       min-height: 100vh;
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 0 0;
       overflow: hidden;
     }
 
     .hero-bg {
       position: absolute;
       inset: 0;
-      z-index: 0;
-      background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1800&q=80') center/cover no-repeat;
+      z-index: 0
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block
     }
 
     .hero-bg::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(105deg, rgba(8, 9, 12, .97) 0%, rgba(8, 9, 12, .82) 50%, rgba(8, 9, 12, .5) 100%);
+      background: linear-gradient(110deg, rgba(7, 8, 13, .97) 0%, rgba(7, 8, 13, .8) 55%, rgba(7, 8, 13, .45) 100%)
     }
 
-    /* particle canvas */
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(7, 8, 13, 1) 0%, transparent 40%);
+      z-index: 1
+    }
+
     #particles {
       position: absolute;
       inset: 0;
@@ -282,197 +347,197 @@
       pointer-events: none
     }
 
-    .hero-content {
+    .hero-inner {
       position: relative;
-      z-index: 2;
-      padding: calc(var(--nav)+5vh) 5vw 6vh;
-      max-width: 900px;
+      z-index: 3;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: end;
+      padding: calc(var(--nav) + 8vh) 5vw 7vh;
     }
 
-    .hero-kicker {
+    .hero-left {}
+
+    .hkick {
       display: inline-flex;
       align-items: center;
-      gap: .7rem;
-      border: 1px solid rgba(201, 168, 76, .3);
-      background: rgba(201, 168, 76, .07);
-      padding: .38rem 1.1rem .38rem .7rem;
+      gap: .65rem;
+      border: 1px solid rgba(212, 168, 67, .3);
+      background: rgba(212, 168, 67, .07);
+      padding: .36rem 1rem .36rem .65rem;
       border-radius: 30px;
-      margin-bottom: 2.25rem;
+      margin-bottom: 2rem
     }
 
-    .kicker-dot {
+    .kdot {
       width: 7px;
       height: 7px;
       background: var(--gold);
       border-radius: 50%;
-      animation: kpulse 2s infinite
+      animation: kp 2s infinite
     }
 
-    @keyframes kpulse {
+    @keyframes kp {
 
       0%,
       100% {
-        box-shadow: 0 0 0 0 rgba(201, 168, 76, .7)
+        box-shadow: 0 0 0 0 rgba(212, 168, 67, .7)
       }
 
       60% {
-        box-shadow: 0 0 0 9px rgba(201, 168, 76, 0)
+        box-shadow: 0 0 0 9px rgba(212, 168, 67, 0)
       }
     }
 
-    .kicker-text {
-      font-size: .68rem;
+    .kt {
+      font-size: .66rem;
       font-weight: 600;
       letter-spacing: .18em;
       text-transform: uppercase;
       color: var(--gold)
     }
 
-    h1.hero-h {
+    /* ── HERO TITLE — clean professional ── */
+    h1 {
       font-family: var(--serif);
-      font-size: clamp(3.8rem, 8.5vw, 8.5rem);
-      font-weight: 300;
-      line-height: .95;
-      letter-spacing: .01em;
-      margin-bottom: .6rem;
-    }
-
-    h1.hero-h .solid {
-      display: block;
-      color: var(--white)
-    }
-
-    h1.hero-h .outline {
-      display: block;
-      -webkit-text-stroke: 1px rgba(255, 255, 255, .2);
-      color: transparent;
-      font-style: italic;
-      font-weight: 300;
-    }
-
-    h1.hero-h .gilded {
-      display: block;
-      background: linear-gradient(90deg, var(--gold), var(--gold2), var(--gold));
-      background-size: 200% 100%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: shimmer 4s linear infinite;
-    }
-
-    @keyframes shimmer {
-      0% {
-        background-position: 0% 50%
-      }
-
-      100% {
-        background-position: 200% 50%
-      }
-    }
-
-    .hero-caption {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 1.15rem;
-      font-weight: 300;
-      letter-spacing: .08em;
-      color: var(--gold);
-      margin-bottom: 1.75rem;
-      border-left: 2px solid var(--gold);
-      padding-left: 1rem;
-      display: inline-block;
-    }
-
-    .hero-desc {
-      font-size: .98rem;
-      color: var(--muted);
-      max-width: 560px;
-      line-height: 1.95;
-      font-weight: 300;
-      margin-bottom: 2.75rem
-    }
-
-    .hero-btns {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 4.5rem
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--gold), var(--gold3));
-      color: var(--ink);
-      padding: .9rem 2.4rem;
-      border-radius: 3px;
-      font-size: .75rem;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      text-decoration: none;
-      box-shadow: 0 0 32px rgba(201, 168, 76, .4);
-      transition: box-shadow .3s, transform .2s;
+      margin-bottom: 1.4rem;
       position: relative;
-      overflow: hidden;
     }
 
-    .btn-primary::before {
+    /* "RANS" — small all-caps label */
+    h1 .t1 {
+      display: block;
+      font-family: var(--sans);
+      font-size: clamp(.7rem, 1.2vw, 1rem);
+      font-weight: 600;
+      letter-spacing: .5em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .6rem;
+      opacity: .9;
+    }
+
+    /* "SYNERGIES" — large, clean, white */
+    h1 .t2 {
+      display: block;
+      font-size: clamp(3.6rem, 7vw, 7rem);
+      font-weight: 700;
+      color: var(--w);
+      letter-spacing: .02em;
+      line-height: 1;
+      position: relative;
+    }
+
+    /* gold underline accent on SYNERGIES */
+    h1 .t2::after {
       content: '';
       position: absolute;
-      inset: 0;
-      background: rgba(255, 255, 255, 0);
-      transition: background .2s
+      bottom: -.15em;
+      left: 0;
+      width: 2.2em;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold2), transparent);
+      border-radius: 2px;
     }
 
-    .btn-primary:hover {
-      box-shadow: 0 0 52px rgba(201, 168, 76, .65);
+    /* "Limited" — elegant serif italic, muted */
+    h1 .t3 {
+      display: block;
+      font-size: clamp(1.1rem, 2vw, 1.6rem);
+      font-weight: 400;
+      font-style: italic;
+      color: rgba(255, 255, 255, .5);
+      letter-spacing: .12em;
+      margin-top: .5rem;
+    }
+
+    .hcaption {
+      display: inline-flex;
+      align-items: center;
+      gap: .75rem;
+      font-family: var(--sans);
+      font-style: normal;
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.75rem;
+      padding: .45rem 1rem;
+      border: 1px solid rgba(212, 168, 67, .3);
+      border-radius: 2px;
+      background: rgba(212, 168, 67, .06);
+    }
+
+    .hdesc {
+      font-size: .95rem;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.9;
+      font-weight: 300;
+      margin-bottom: 2.5rem
+    }
+
+    .hbtns {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap
+    }
+
+    .bp {
+      background: linear-gradient(135deg, var(--gold), var(--gold3));
+      color: var(--bg);
+      padding: .9rem 2.2rem;
+      border-radius: 4px;
+      font-size: .74rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      box-shadow: 0 0 30px var(--goldglow);
+      transition: box-shadow .3s, transform .2s
+    }
+
+    .bp:hover {
+      box-shadow: 0 0 50px rgba(212, 168, 67, .65);
       transform: translateY(-2px)
     }
 
-    .btn-secondary {
+    .bs {
       border: 1px solid rgba(255, 255, 255, .18);
-      color: var(--white);
-      padding: .9rem 2.4rem;
-      border-radius: 3px;
-      font-size: .75rem;
+      color: var(--w);
+      padding: .9rem 2.2rem;
+      border-radius: 4px;
+      font-size: .74rem;
       font-weight: 500;
-      letter-spacing: .12em;
+      letter-spacing: .1em;
       text-transform: uppercase;
       text-decoration: none;
       background: rgba(255, 255, 255, .04);
       backdrop-filter: blur(8px);
-      transition: all .25s;
+      transition: all .25s
     }
 
-    .btn-secondary:hover {
+    .bs:hover {
       border-color: var(--gold);
       color: var(--gold);
-      background: rgba(201, 168, 76, .07);
+      background: rgba(212, 168, 67, .07);
       transform: translateY(-2px)
     }
 
-    .hero-stats {
-      display: flex;
-      gap: 0;
-      border: 1px solid rgba(201, 168, 76, .2);
-      border-radius: 8px;
+    /* hero assembly spotlight */
+    .hero-right {
+      background: rgba(212, 168, 67, .06);
+      border: 1px solid rgba(212, 168, 67, .2);
+      border-radius: 12px;
+      padding: 2rem;
+      backdrop-filter: blur(12px);
+      position: relative;
       overflow: hidden;
-      background: rgba(201, 168, 76, .05);
-      backdrop-filter: blur(16px);
-      max-width: 540px;
     }
 
-    .hs {
-      flex: 1;
-      padding: 1.4rem 1.6rem;
-      border-right: 1px solid rgba(201, 168, 76, .15);
-      position: relative
-    }
-
-    .hs:last-child {
-      border-right: none
-    }
-
-    .hs::before {
+    .hero-right::before {
       content: '';
       position: absolute;
       top: 0;
@@ -482,215 +547,371 @@
       background: linear-gradient(90deg, var(--gold), transparent)
     }
 
-    .hs-n {
+    .assembly-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--gold);
+      color: var(--bg);
+      padding: .3rem .85rem;
+      border-radius: 20px;
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 1.1rem;
+    }
+
+    .assembly-badge span {
+      font-size: .9rem
+    }
+
+    .hr-title {
       font-family: var(--serif);
-      font-size: 2.3rem;
-      font-weight: 600;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: .6rem;
+      line-height: 1.25
+    }
+
+    .hr-desc {
+      font-size: .82rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1.4rem
+    }
+
+    .assembly-points {
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+      margin-bottom: 1.4rem
+    }
+
+    .ap {
+      display: flex;
+      align-items: flex-start;
+      gap: .7rem;
+      font-size: .8rem;
+      color: rgba(255, 255, 255, .75)
+    }
+
+    .ap::before {
+      content: '▸';
+      color: var(--gold);
+      flex-shrink: 0;
+      font-size: .7rem;
+      margin-top: .2rem
+    }
+
+    .hr-img {
+      width: 100%;
+      height: 160px;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative
+    }
+
+    .hr-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block
+    }
+
+    .hr-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(7, 8, 13, .25)
+    }
+
+    /* stats bar */
+    .stats-bar {
+      position: relative;
+      z-index: 3;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid rgba(212, 168, 67, .12);
+      background: rgba(7, 8, 13, .85);
+      backdrop-filter: blur(20px);
+    }
+
+    .sb-item {
+      padding: 1.5rem 2rem;
+      border-right: 1px solid rgba(212, 168, 67, .1);
+      position: relative;
+    }
+
+    .sb-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      transform: scaleX(0);
+      transition: transform .4s;
+      transform-origin: left
+    }
+
+    .sb-item:hover::before {
+      transform: scaleX(1)
+    }
+
+    .sb-item:last-child {
+      border-right: none
+    }
+
+    .sbn {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 700;
       color: var(--gold);
       display: block;
       line-height: 1
     }
 
-    .hs-l {
+    .sbl {
       font-size: .62rem;
       font-weight: 500;
-      letter-spacing: .14em;
+      letter-spacing: .1em;
       text-transform: uppercase;
       color: var(--dim);
       margin-top: .3rem;
       display: block
     }
 
-    /* ══ SHARED ══ */
-    section {
+    /* ═══ ASSEMBLY SECTION (MAIN FOCUS) ═══ */
+    #assembly {
       padding: 7rem 5vw;
-      position: relative
+      background: var(--bg2);
+      overflow: hidden;
     }
 
-    .lbl {
-      display: inline-flex;
-      align-items: center;
-      gap: .6rem;
-      font-size: .65rem;
-      font-weight: 600;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: .8rem
-    }
-
-    .lbl::before {
+    #assembly::before {
       content: '';
-      width: 28px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
       height: 1px;
-      background: var(--gold);
-      display: block
+      background: linear-gradient(90deg, transparent, var(--gold), transparent)
     }
 
-    .sec-h {
-      font-family: var(--serif);
-      font-size: clamp(2.2rem, 4vw, 3.6rem);
-      font-weight: 300;
-      letter-spacing: .01em;
-      line-height: 1.1;
-      margin-bottom: 1.25rem;
-      color: var(--white)
-    }
-
-    .sec-sub {
-      font-size: .93rem;
-      color: var(--muted);
-      line-height: 1.9;
-      font-weight: 300;
-      max-width: 500px
-    }
-
-    .gold-line {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      margin: 0;
-      border: none
-    }
-
-    /* ══ ABOUT ══ */
-    #about {
-      background: var(--ink2)
-    }
-
-    .about-g {
+    .assembly-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 5rem;
-      align-items: center
+      align-items: center;
+      margin-bottom: 5rem
     }
 
-    .about-img-wrap {
+    .assembly-visual {
       position: relative
     }
 
-    .about-img {
-      width: 100%;
-      aspect-ratio: 4/5;
+    .av-main {
       border-radius: 12px;
       overflow: hidden;
+      aspect-ratio: 4/5;
       position: relative;
-      box-shadow: 0 24px 80px rgba(0, 0, 0, .6);
+      box-shadow: 0 32px 80px rgba(0, 0, 0, .7)
     }
 
-    .about-img img {
+    .av-main img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 6s ease
+      transition: transform 7s ease
     }
 
-    .about-img:hover img {
+    .av-main:hover img {
       transform: scale(1.04)
     }
 
-    .about-img::after {
+    .av-main::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(8, 9, 12, .7) 0%, transparent 50%);
+      background: linear-gradient(to top, rgba(7, 8, 13, .7) 0%, transparent 55%)
     }
 
-    .about-badge {
+    .av-accent {
       position: absolute;
-      bottom: -1.75rem;
-      right: -1.75rem;
+      top: -1.5rem;
+      right: -1.5rem;
+      width: 180px;
+      height: 180px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 3px solid var(--bg2);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, .6);
+    }
+
+    .av-accent img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block
+    }
+
+    .av-badge {
+      position: absolute;
+      bottom: -1.5rem;
+      left: -1.5rem;
       background: linear-gradient(135deg, var(--gold), var(--gold3));
       border-radius: 10px;
-      padding: 1.4rem 1.75rem;
-      box-shadow: 0 12px 40px rgba(201, 168, 76, .4);
-      text-align: center;
+      padding: 1.3rem 1.6rem;
+      box-shadow: 0 12px 40px rgba(212, 168, 67, .4);
     }
 
-    .about-badge strong {
+    .av-badge strong {
       font-family: var(--serif);
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: var(--ink);
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--bg);
       display: block;
       line-height: 1
     }
 
-    .about-badge span {
-      font-size: .62rem;
+    .av-badge span {
+      font-size: .6rem;
       font-weight: 700;
       letter-spacing: .1em;
       text-transform: uppercase;
-      color: rgba(8, 9, 12, .6)
+      color: rgba(7, 8, 13, .6)
     }
 
-    .about-text .sec-sub {
+    .assembly-copy .sub {
       max-width: 100%;
       margin-bottom: 2rem
     }
 
-    .about-caption {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 1.4rem;
-      font-weight: 300;
-      color: var(--gold);
+    .a-highlight {
+      background: linear-gradient(135deg, rgba(212, 168, 67, .08), rgba(212, 168, 67, .03));
+      border: 1px solid rgba(212, 168, 67, .2);
+      border-radius: 10px;
+      padding: 1.5rem;
       margin-bottom: 1.5rem;
-      line-height: 1.4
+      border-left: 3px solid var(--gold);
     }
 
-    .pillars {
-      display: flex;
-      flex-direction: column;
-      gap: .85rem;
+    .a-highlight p {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--w);
+      line-height: 1.6
+    }
+
+    .a-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
       margin-top: 2rem
     }
 
-    .pillar {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-      padding: 1.1rem 1.25rem;
+    .ac {
+      padding: 1.25rem;
       border: 1px solid var(--gb);
       border-radius: 8px;
-      transition: border-color .25s, transform .25s, background .25s;
       background: var(--glass);
+      transition: border-color .25s, transform .25s, background .25s;
     }
 
-    .pillar:hover {
-      border-color: rgba(201, 168, 76, .4);
-      transform: translateX(5px);
-      background: rgba(201, 168, 76, .04)
+    .ac:hover {
+      border-color: rgba(212, 168, 67, .4);
+      transform: translateY(-3px);
+      background: rgba(212, 168, 67, .04)
     }
 
-    .pillar-icon {
-      width: 38px;
-      height: 38px;
-      min-width: 38px;
-      border-radius: 6px;
-      background: rgba(201, 168, 76, .1);
-      border: 1px solid rgba(201, 168, 76, .2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem
+    .ac-icon {
+      font-size: 1.5rem;
+      margin-bottom: .6rem;
+      display: block
     }
 
-    .pillar-t {
+    .ac-t {
       font-weight: 600;
-      font-size: .87rem;
-      margin-bottom: .18rem
+      font-size: .85rem;
+      margin-bottom: .3rem
     }
 
-    .pillar-d {
-      font-size: .79rem;
+    .ac-d {
+      font-size: .76rem;
       color: var(--muted);
       line-height: 1.6
     }
 
-    /* ══ SERVICES ══ */
+    /* assembly sub-services strip */
+    .assembly-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--gb);
+      border: 1px solid var(--gb);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .ast {
+      background: var(--bg3);
+      padding: 1.75rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: background .25s;
+    }
+
+    .ast:hover {
+      background: #141728
+    }
+
+    .ast::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold3));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .35s
+    }
+
+    .ast:hover::before {
+      transform: scaleX(1)
+    }
+
+    .ast-icon {
+      font-size: 1.8rem;
+      margin-bottom: .75rem;
+      display: block;
+      filter: drop-shadow(0 0 6px rgba(212, 168, 67, .35))
+    }
+
+    .ast-t {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: .95rem;
+      margin-bottom: .4rem;
+      color: var(--w)
+    }
+
+    .ast-d {
+      font-size: .76rem;
+      color: var(--muted);
+      line-height: 1.65
+    }
+
+    /* ═══ SERVICES ═══ */
     #services {
-      background: var(--ink)
+      padding: 7rem 5vw;
+      background: var(--bg)
     }
 
     .svc-hdr {
@@ -701,135 +922,120 @@
       margin-bottom: 4rem
     }
 
-    .svc-grid {
+    .svc-g {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem
     }
 
     .sc {
-      border-radius: 12px;
-      overflow: hidden;
-      position: relative;
+      border-radius: 10px;
       border: 1px solid var(--gb);
       background: var(--glass);
-      transition: transform .35s, box-shadow .35s, border-color .35s;
-      cursor: default;
+      padding: 1.75rem;
+      transition: transform .3s, border-color .3s, box-shadow .3s, background .3s;
+      position: relative;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
     }
 
-    .sc:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 24px 60px rgba(0, 0, 0, .5);
-      border-color: rgba(201, 168, 76, .35)
-    }
-
-    .sc-img {
-      width: 100%;
-      height: 180px;
-      overflow: hidden;
-      position: relative;
-      flex-shrink: 0
-    }
-
-    .sc-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform .6s ease;
-      display: block
-    }
-
-    .sc:hover .sc-img img {
-      transform: scale(1.08)
-    }
-
-    .sc-img::after {
+    .sc::before {
       content: '';
       position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, transparent 50%, rgba(8, 9, 12, .8))
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .4s
     }
 
-    .sc-body {
-      padding: 1.5rem 1.5rem 1.75rem;
-      flex: 1;
-      display: flex;
-      flex-direction: column
+    .sc:hover {
+      transform: translateY(-6px);
+      border-color: rgba(212, 168, 67, .35);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, .5);
+      background: rgba(212, 168, 67, .04)
     }
 
-    .sc-icon {
-      font-size: 1.6rem;
-      margin-bottom: .7rem;
+    .sc:hover::before {
+      transform: scaleX(1)
+    }
+
+    .sc-ico {
+      font-size: 2rem;
+      margin-bottom: 1rem;
       display: block;
-      filter: drop-shadow(0 0 8px rgba(201, 168, 76, .4))
+      filter: drop-shadow(0 0 8px rgba(212, 168, 67, .3));
+      line-height: 1
     }
 
-    .sc-name {
+    .sc-n {
       font-family: var(--serif);
-      font-size: 1.15rem;
-      font-weight: 600;
-      letter-spacing: .02em;
-      margin-bottom: .5rem;
-      color: var(--white)
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: .5rem
     }
 
-    .sc-desc {
-      font-size: .8rem;
+    .sc-d {
+      font-size: .78rem;
       color: var(--muted);
       line-height: 1.75;
       flex: 1
     }
 
-    .sc-bar {
-      height: 2px;
-      background: linear-gradient(90deg, var(--gold), var(--gold3));
-      margin-top: 1.25rem;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform .4s;
-      border-radius: 1px
+    /* featured wide service */
+    .sc-feat {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center
     }
 
-    .sc:hover .sc-bar {
-      transform: scaleX(1)
+    .sc-feat .sc-body {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem
     }
 
-    /* wide card */
-    .sc-wide {
-      grid-column: span 3;
-      flex-direction: row;
-      align-items: stretch
+    .sc-feat .sc-n {
+      font-size: 1.25rem
     }
 
-    .sc-wide .sc-img {
-      width: 380px;
-      min-width: 380px;
-      height: auto
-    }
-
-    .sc-wide .sc-body {
-      padding: 2.25rem 2.5rem
-    }
-
-    .sc-wide .sc-name {
-      font-size: 1.5rem;
-      margin-bottom: .6rem
-    }
-
-    .sc-wide .sc-desc {
-      max-width: 480px;
-      font-size: .85rem
-    }
-
-    /* ══ SECTORS ══ */
-    #sectors {
-      background: var(--ink2);
+    .sc-feat .sc-img-side {
+      border-radius: 8px;
       overflow: hidden;
+      height: 180px
     }
 
-    .sec-hdr2 {
+    .sc-feat .sc-img-side img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block
+    }
+
+    /* ═══ SECTORS ═══ */
+    #sectors {
+      padding: 7rem 5vw;
+      background: var(--bg2);
+      overflow: hidden
+    }
+
+    #sectors::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent)
+    }
+
+    .sec-hdr {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 3rem;
@@ -843,63 +1049,63 @@
       gap: 1rem
     }
 
-    .sector {
+    .sec {
       background: var(--glass);
       border: 1px solid var(--gb);
-      border-radius: 12px;
-      padding: 1.75rem 1.25rem;
+      border-radius: 10px;
+      padding: 1.75rem 1rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      gap: .8rem;
+      gap: .75rem;
       transition: transform .3s, border-color .3s, background .3s, box-shadow .3s;
       position: relative;
       overflow: hidden;
+      cursor: default;
     }
 
-    .sector::before {
+    .sec::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(201, 168, 76, .09), transparent);
+      background: linear-gradient(135deg, rgba(212, 168, 67, .08), transparent);
       opacity: 0;
       transition: opacity .3s;
-      border-radius: 12px
+      border-radius: 10px
     }
 
-    .sector:hover {
+    .sec:hover {
       transform: translateY(-7px);
-      border-color: rgba(201, 168, 76, .45);
-      box-shadow: 0 16px 48px rgba(201, 168, 76, .12)
+      border-color: rgba(212, 168, 67, .45);
+      box-shadow: 0 16px 48px rgba(212, 168, 67, .1)
     }
 
-    .sector:hover::before {
+    .sec:hover::before {
       opacity: 1
     }
 
-    .sector-e {
-      font-size: 2.1rem;
+    .sec-e {
+      font-size: 2rem;
       transition: transform .3s;
-      filter: drop-shadow(0 0 10px rgba(201, 168, 76, .25))
+      filter: drop-shadow(0 0 8px rgba(212, 168, 67, .2))
     }
 
-    .sector:hover .sector-e {
-      transform: scale(1.2) rotate(-5deg)
+    .sec:hover .sec-e {
+      transform: scale(1.2) rotate(-6deg)
     }
 
-    .sector-l {
-      font-size: .76rem;
+    .sec-l {
+      font-size: .74rem;
       font-weight: 500;
-      letter-spacing: .02em;
-      color: rgba(255, 255, 255, .75);
+      color: rgba(255, 255, 255, .72);
       line-height: 1.45
     }
 
-    /* ══ GALLERY / SHOWCASE ══ */
+    /* ═══ SHOWCASE ═══ */
     #showcase {
-      background: var(--ink);
-      overflow: hidden
+      padding: 7rem 5vw;
+      background: var(--bg)
     }
 
     .showcase-hdr {
@@ -907,26 +1113,26 @@
       margin-bottom: 3.5rem
     }
 
-    .showcase-hdr .sec-sub {
-      max-width: 560px;
+    .showcase-hdr .sub {
+      max-width: 520px;
       margin: 0 auto
     }
 
-    .gallery {
+    .gal {
       display: grid;
-      grid-template-columns: 1.6fr 1fr 1fr;
-      grid-template-rows: 280px 280px;
-      gap: 1rem;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      grid-template-rows: 260px 260px;
+      gap: .85rem;
     }
 
-    .gal-item {
+    .gi {
       border-radius: 10px;
       overflow: hidden;
       position: relative;
       cursor: default
     }
 
-    .gal-item img {
+    .gi img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -934,48 +1140,59 @@
       transition: transform .6s ease
     }
 
-    .gal-item:hover img {
-      transform: scale(1.06)
+    .gi:hover img {
+      transform: scale(1.07)
     }
 
-    .gal-item::after {
+    .gi::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(8, 9, 12, .75) 0%, rgba(8, 9, 12, .1) 60%)
+      background: linear-gradient(to top, rgba(7, 8, 13, .8) 0%, rgba(7, 8, 13, .05) 60%)
     }
 
-    .gal-item:nth-child(1) {
+    .gi:nth-child(1) {
       grid-row: span 2
     }
 
-    .gal-caption {
+    .gi-cap {
       position: absolute;
-      bottom: 1.25rem;
-      left: 1.25rem;
+      bottom: 1.2rem;
+      left: 1.2rem;
       z-index: 2
     }
 
-    .gal-caption span {
-      font-size: .68rem;
-      font-weight: 600;
-      letter-spacing: .12em;
+    .gi-cap span {
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .14em;
       text-transform: uppercase;
       color: var(--gold);
       display: block;
-      margin-bottom: .25rem
+      margin-bottom: .2rem
     }
 
-    .gal-caption p {
+    .gi-cap p {
       font-family: var(--serif);
-      font-size: 1rem;
+      font-size: .98rem;
       font-weight: 600;
-      color: var(--white)
+      color: var(--w)
     }
 
-    /* ══ WHY ══ */
+    /* ═══ WHY ═══ */
     #why {
-      background: var(--ink2)
+      padding: 7rem 5vw;
+      background: var(--bg2)
+    }
+
+    #why::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212, 168, 67, .5), transparent)
     }
 
     .why-g {
@@ -993,12 +1210,12 @@
 
     .mc {
       border-radius: 10px;
-      padding: 2rem 1.75rem;
+      padding: 1.75rem;
       border: 1px solid var(--gb);
       background: var(--glass);
       transition: transform .25s, border-color .25s, box-shadow .25s;
       position: relative;
-      overflow: hidden;
+      overflow: hidden
     }
 
     .mc::after {
@@ -1006,29 +1223,43 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
+      right: 0;
       height: 2px;
       background: linear-gradient(90deg, var(--gold), transparent)
     }
 
-    .mc:hover {
-      transform: scale(1.04);
-      border-color: rgba(201, 168, 76, .4);
-      box-shadow: 0 0 30px rgba(201, 168, 76, .1)
+    .mc:nth-child(2) {
+      background: linear-gradient(135deg, rgba(212, 168, 67, .1), rgba(212, 168, 67, .04));
+      border-color: rgba(212, 168, 67, .25)
     }
 
-    .mc-n {
+    .mc:nth-child(3) {
+      background: linear-gradient(135deg, rgba(232, 64, 64, .08), rgba(232, 64, 64, .03));
+      border-color: rgba(232, 64, 64, .2)
+    }
+
+    .mc:nth-child(3) .mn {
+      color: #e84040
+    }
+
+    .mc:hover {
+      transform: scale(1.04);
+      border-color: rgba(212, 168, 67, .4);
+      box-shadow: 0 0 30px rgba(212, 168, 67, .08)
+    }
+
+    .mn {
       font-family: var(--serif);
-      font-size: 3rem;
-      font-weight: 600;
+      font-size: 2.8rem;
+      font-weight: 900;
       color: var(--gold);
       display: block;
       line-height: 1;
       margin-bottom: .3rem
     }
 
-    .mc-l {
-      font-size: .65rem;
+    .ml {
+      font-size: .62rem;
       font-weight: 600;
       letter-spacing: .12em;
       text-transform: uppercase;
@@ -1036,7 +1267,7 @@
     }
 
     .why-pts {
-      margin-top: 2.75rem;
+      margin-top: 2.5rem;
       display: flex;
       flex-direction: column;
       gap: 1.5rem
@@ -1048,86 +1279,87 @@
       align-items: flex-start
     }
 
-    .wp-n {
+    .wn {
       font-family: var(--serif);
-      font-size: 2.2rem;
-      font-weight: 600;
+      font-size: 2rem;
+      font-weight: 900;
       color: var(--gold);
       line-height: 1;
-      min-width: 2.5rem
+      min-width: 2.4rem
     }
 
-    .wp-title {
+    .wt {
       font-weight: 600;
-      font-size: .9rem;
+      font-size: .88rem;
       margin-bottom: .25rem
     }
 
-    .wp-desc {
-      font-size: .8rem;
+    .wd {
+      font-size: .79rem;
       color: var(--muted);
       line-height: 1.7
     }
 
-    /* ══ CONTACT ══ */
+    /* ═══ CONTACT ═══ */
     #contact {
-      background: var(--ink);
+      padding: 7rem 5vw;
+      background: var(--bg);
       overflow: hidden
     }
 
-    .contact-bg {
+    .contact-glow {
       position: absolute;
       top: -200px;
-      right: -200px;
-      width: 700px;
-      height: 700px;
-      background: radial-gradient(circle, rgba(201, 168, 76, .06) 0%, transparent 65%);
-      pointer-events: none;
+      right: -150px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(212, 168, 67, .06) 0%, transparent 65%);
+      pointer-events: none
     }
 
     .contact-g {
       display: grid;
-      grid-template-columns: 1fr 1.1fr;
+      grid-template-columns: 1fr 1.15fr;
       gap: 5rem;
       align-items: start;
       position: relative;
       z-index: 2
     }
 
-    .contact-info .sec-sub {
+    .contact-info .sub {
       max-width: 100%;
       margin-bottom: 2.5rem
     }
 
-    .c-list {
+    .ci-list {
       display: flex;
       flex-direction: column
     }
 
-    .c-row {
+    .ci {
       display: flex;
       align-items: center;
       gap: 1.1rem;
       padding: 1.1rem 0;
-      border-bottom: 1px solid var(--gb);
+      border-bottom: 1px solid var(--gb)
     }
 
-    .c-ico {
+    .ci-ico {
       width: 42px;
       height: 42px;
       min-width: 42px;
       border-radius: 8px;
-      background: rgba(201, 168, 76, .08);
-      border: 1px solid rgba(201, 168, 76, .2);
+      background: rgba(212, 168, 67, .08);
+      border: 1px solid rgba(212, 168, 67, .2);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem
+      font-size: 1rem
     }
 
-    .c-info strong {
+    .ci-t strong {
       display: block;
-      font-size: .62rem;
+      font-size: .6rem;
       font-weight: 700;
       letter-spacing: .14em;
       text-transform: uppercase;
@@ -1135,28 +1367,28 @@
       margin-bottom: .15rem
     }
 
-    .c-info a {
-      color: var(--white);
+    .ci-t a {
+      color: var(--w);
       text-decoration: none;
-      font-size: .9rem;
+      font-size: .88rem;
       transition: color .2s
     }
 
-    .c-info a:hover {
+    .ci-t a:hover {
       color: var(--gold)
     }
 
-    .c-info span {
-      font-size: .9rem;
+    .ci-t span {
+      font-size: .88rem;
       color: var(--muted)
     }
 
-    /* form card */
+    /* form */
     .form-card {
       background: rgba(255, 255, 255, .03);
       border: 1px solid var(--gb);
-      border-radius: 16px;
-      padding: 2.75rem;
+      border-radius: 14px;
+      padding: 2.5rem;
       position: relative;
       overflow: hidden;
       backdrop-filter: blur(20px);
@@ -1169,23 +1401,22 @@
       left: 0;
       right: 0;
       height: 2px;
-      background: linear-gradient(90deg, var(--gold), transparent)
+      background: linear-gradient(90deg, var(--gold), var(--gold2), transparent)
     }
 
-    .form-title {
+    .ftitle {
       font-family: var(--serif);
-      font-size: 1.6rem;
-      font-weight: 300;
-      margin-bottom: 1.75rem;
-      color: var(--white)
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 1.6rem;
+      color: var(--w)
     }
 
-    .form-title span {
-      color: var(--gold);
-      font-style: italic
+    .ftitle em {
+      color: var(--gold)
     }
 
-    form {
+    .finner {
       display: flex;
       flex-direction: column;
       gap: 1rem
@@ -1200,13 +1431,13 @@
     .fg {
       display: flex;
       flex-direction: column;
-      gap: .4rem
+      gap: .38rem
     }
 
     label {
-      font-size: .63rem;
+      font-size: .6rem;
       font-weight: 700;
-      letter-spacing: .14em;
+      letter-spacing: .15em;
       text-transform: uppercase;
       color: var(--dim)
     }
@@ -1216,12 +1447,12 @@
     select {
       width: 100%;
       font-family: var(--sans);
-      font-size: .88rem;
+      font-size: .86rem;
       background: rgba(255, 255, 255, .05);
       border: 1px solid rgba(255, 255, 255, .1);
       border-radius: 6px;
-      padding: .82rem 1rem;
-      color: var(--white);
+      padding: .8rem 1rem;
+      color: var(--w);
       transition: border-color .2s, box-shadow .2s, background .2s;
       outline: none;
       appearance: none;
@@ -1229,99 +1460,121 @@
 
     input::placeholder,
     textarea::placeholder {
-      color: rgba(255, 255, 255, .22)
+      color: rgba(255, 255, 255, .2)
     }
 
     input:focus,
     textarea:focus,
     select:focus {
       border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(201, 168, 76, .12);
-      background: rgba(201, 168, 76, .04)
+      box-shadow: 0 0 0 3px rgba(212, 168, 67, .1);
+      background: rgba(212, 168, 67, .04)
     }
 
     select option {
-      background: var(--ink2);
-      color: var(--white)
+      background: var(--bg2);
+      color: var(--w)
     }
 
     textarea {
       resize: vertical;
-      min-height: 110px
+      min-height: 105px
     }
 
-    .f-send {
+    .fsend {
       background: linear-gradient(135deg, var(--gold), var(--gold3));
-      color: var(--ink);
+      color: var(--bg);
       border: none;
-      padding: 1rem 2.4rem;
+      padding: .95rem 2.2rem;
       border-radius: 5px;
       font-family: var(--sans);
-      font-size: .75rem;
+      font-size: .73rem;
       font-weight: 700;
-      letter-spacing: .14em;
+      letter-spacing: .12em;
       text-transform: uppercase;
       cursor: pointer;
       align-self: flex-start;
-      box-shadow: 0 0 28px rgba(201, 168, 76, .35);
-      transition: box-shadow .25s, transform .2s;
+      box-shadow: 0 0 28px rgba(212, 168, 67, .35);
+      transition: box-shadow .25s, transform .2s, opacity .2s;
       display: flex;
       align-items: center;
-      gap: .6rem;
+      gap: .55rem;
     }
 
-    .f-send:hover {
-      box-shadow: 0 0 48px rgba(201, 168, 76, .6);
+    .fsend:hover {
+      box-shadow: 0 0 44px rgba(212, 168, 67, .6);
       transform: translateY(-2px)
     }
 
-    .f-send svg {
-      width: 14px;
-      height: 14px;
-      flex-shrink: 0
+    .fsend:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+      transform: none
     }
 
-    .f-note {
-      font-size: .72rem;
+    .fnote {
+      font-size: .7rem;
       color: var(--dim);
-      margin-top: .25rem
+      margin-top: .2rem
     }
 
-    /* success state */
-    .success-msg {
+    .fstatus {
+      display: none;
+      padding: .75rem 1rem;
+      border-radius: 6px;
+      font-size: .82rem;
+      font-weight: 500;
+      margin-top: .5rem
+    }
+
+    .fstatus.ok {
+      display: block;
+      background: rgba(0, 200, 100, .1);
+      border: 1px solid rgba(0, 200, 100, .3);
+      color: #4cde90
+    }
+
+    .fstatus.err {
+      display: block;
+      background: rgba(232, 64, 64, .1);
+      border: 1px solid rgba(232, 64, 64, .3);
+      color: #f07070
+    }
+
+    .success-panel {
       display: none;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
       gap: 1rem;
-      padding: 3rem 1rem;
+      padding: 4rem 1rem
     }
 
-    .success-msg .check {
+    .sp-check {
       font-size: 3rem
     }
 
-    .success-msg h3 {
+    .sp-h {
       font-family: var(--serif);
-      font-size: 1.6rem;
-      font-weight: 300;
-      color: var(--white)
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--w)
     }
 
-    .success-msg p {
+    .sp-p {
       font-size: .85rem;
       color: var(--muted)
     }
 
-    /* ══ FOOTER ══ */
+    /* ═══ FOOTER ═══ */
     footer {
-      background: var(--ink2);
+      background: var(--bg2);
       border-top: 1px solid var(--gb);
       padding: 4rem 5vw 2rem
     }
 
-    .foot-top {
+    .ft {
       display: grid;
       grid-template-columns: 1.8fr 1fr 1fr;
       gap: 3rem;
@@ -1330,64 +1583,76 @@
       margin-bottom: 2rem
     }
 
-    .foot-brand .logo-sq {
+    .fb-ico {
+      width: 42px;
+      height: 42px;
+      border-radius: 7px;
+      background: linear-gradient(135deg, var(--gold), var(--gold3));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: var(--bg);
+      box-shadow: 0 0 16px var(--goldglow);
       margin-bottom: 1rem
     }
 
-    .foot-name {
+    .fb-n {
       font-family: var(--serif);
-      font-size: 1.1rem;
-      font-weight: 600;
-      letter-spacing: .1em;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: .08em;
       text-transform: uppercase;
       margin-bottom: .3rem
     }
 
-    .foot-tag {
+    .fb-t {
       font-family: var(--serif);
       font-style: italic;
-      font-size: .85rem;
+      font-size: .82rem;
       color: var(--gold);
       margin-bottom: .75rem
     }
 
-    .foot-desc {
-      font-size: .8rem;
+    .fb-d {
+      font-size: .78rem;
       color: var(--muted);
-      line-height: 1.8;
-      max-width: 270px;
+      line-height: 1.85;
+      max-width: 260px;
       font-weight: 300
     }
 
-    .foot-col h4 {
-      font-size: .62rem;
+    .fc h4 {
+      font-size: .6rem;
       font-weight: 700;
       letter-spacing: .18em;
       text-transform: uppercase;
       color: var(--dim);
-      margin-bottom: 1.25rem
+      margin-bottom: 1.2rem
     }
 
-    .foot-col ul {
+    .fc ul {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: .6rem
+      gap: .55rem
     }
 
-    .foot-col a {
-      font-size: .8rem;
+    .fc a {
+      font-size: .79rem;
       color: var(--muted);
       text-decoration: none;
       transition: color .2s;
       display: block
     }
 
-    .foot-col a:hover {
+    .fc a:hover {
       color: var(--gold)
     }
 
-    .foot-bottom {
+    .fb {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -1395,38 +1660,37 @@
       gap: .75rem
     }
 
-    .foot-bottom p {
-      font-size: .75rem;
+    .fb p,
+    .fb a {
+      font-size: .73rem;
       color: var(--dim)
     }
 
-    .foot-bottom a {
-      font-size: .75rem;
-      color: var(--dim);
+    .fb a {
       text-decoration: none;
       transition: color .2s
     }
 
-    .foot-bottom a:hover {
+    .fb a:hover {
       color: var(--gold)
     }
 
-    /* ══ REVEAL ══ */
+    /* ═══ REVEAL ANIMATIONS ═══ */
     .r {
       opacity: 0;
-      transform: translateY(34px);
-      transition: opacity .75s ease, transform .75s ease
+      transform: translateY(32px);
+      transition: opacity .7s ease, transform .7s ease
     }
 
     .rl {
       opacity: 0;
-      transform: translateX(-34px);
+      transform: translateX(-32px);
       transition: opacity .75s ease, transform .75s ease
     }
 
     .rr {
       opacity: 0;
-      transform: translateX(34px);
+      transform: translateX(32px);
       transition: opacity .75s ease, transform .75s ease
     }
 
@@ -1437,98 +1701,118 @@
       transform: none
     }
 
-    /* ══ RESPONSIVE ══ */
+    /* ═══ RESPONSIVE ═══ */
     @media(max-width:1100px) {
-      .sc-wide {
-        grid-column: span 3;
-        flex-direction: column
+      .svc-g {
+        grid-template-columns: repeat(2, 1fr)
       }
 
-      .sc-wide .sc-img {
-        width: 100%;
-        height: 220px
-      }
-
-      .gallery {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 220px 220px
-      }
-
-      .gal-item:nth-child(1) {
-        grid-row: span 1
+      .sc-feat {
+        grid-column: span 2
       }
 
       .sector-g {
         grid-template-columns: repeat(4, 1fr)
       }
+
+      .gal {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 220px 220px
+      }
+
+      .gi:nth-child(1) {
+        grid-row: span 1
+      }
     }
 
     @media(max-width:900px) {
 
-      .nav-links,
-      .nav-cta {
+      .nv,
+      .ncta {
         display: none
       }
 
-      .ham {
+      .hm {
         display: flex
       }
 
-      .about-g,
-      .svc-hdr,
-      .sec-hdr2,
-      .contact-g,
-      .why-g,
-      .foot-top {
+      .hero-inner {
         grid-template-columns: 1fr;
         gap: 2.5rem
       }
 
-      .svc-grid {
+      .stats-bar {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .assembly-grid,
+      .svc-hdr,
+      .sec-hdr,
+      .contact-g,
+      .why-g,
+      .ft {
+        grid-template-columns: 1fr;
+        gap: 2.5rem
+      }
+
+      .sc-feat {
+        grid-column: span 2;
+        flex-direction: column
+      }
+
+      .a-cards {
         grid-template-columns: 1fr 1fr
       }
 
-      .sc-wide {
-        grid-column: span 2
+      .assembly-strip {
+        grid-template-columns: 1fr 1fr
       }
 
-      .gallery {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 220px 220px
+      .av-accent {
+        display: none
+      }
+
+      .av-badge {
+        bottom: -.75rem;
+        left: -.75rem
       }
 
       .sector-g {
         grid-template-columns: repeat(3, 1fr)
       }
-
-      .about-badge {
-        bottom: -1rem;
-        right: -.75rem
-      }
     }
 
     @media(max-width:600px) {
-      section {
-        padding: 5rem 5vw
-      }
-
-      .svc-grid {
+      .svc-g {
         grid-template-columns: 1fr
       }
 
-      .sc-wide {
-        grid-column: span 1
+      .sc-feat {
+        grid-column: span 1;
+        grid-template-columns: 1fr
       }
 
-      .gallery {
-        grid-template-columns: 1fr
+      .sc-feat .sc-img-side {
+        display: none
       }
 
       .sector-g {
         grid-template-columns: 1fr 1fr
       }
 
+      .assembly-strip {
+        grid-template-columns: 1fr
+      }
+
+      .gal {
+        grid-template-columns: 1fr
+      }
+
       .metrics {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .stats-bar {
         grid-template-columns: 1fr 1fr
       }
 
@@ -1536,374 +1820,414 @@
         grid-template-columns: 1fr
       }
 
-      .hero-stats {
-        flex-direction: column;
-        max-width: 100%
-      }
-
-      .hs {
-        border-right: none;
-        border-bottom: 1px solid rgba(201, 168, 76, .15)
-      }
-
-      .hs:last-child {
-        border-bottom: none
+      .a-cards {
+        grid-template-columns: 1fr
       }
     }
   </style>
 </head>
 
 <body>
-  <div id="cur"></div>
-  <div id="cur-o"></div>
+  <div id="dot"></div>
+  <div id="ring"></div>
   <canvas id="particles"></canvas>
 
-  <!-- ══ NAV ══ -->
+  <!-- ═══ NAV ═══ -->
   <nav id="nav">
-    <a href="#hero" class="nav-logo">
-      <div class="logo-sq">RS</div>
-      <div class="logo-words">
-        <span class="logo-name">Rans Synergies</span>
-        <span class="logo-tag">Connecting Ideas | Creating Values</span>
+    <a href="#hero" class="nl">
+      <div class="lm">RS</div>
+      <div class="lw">
+        <span class="ln">Rans Synergies</span>
+        <span class="lt">Connecting Ideas | Creating Values</span>
       </div>
     </a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
+    <ul class="nv">
+      <li><a href="#assembly">Assembly</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#sectors">Sectors</a></li>
       <li><a href="#showcase">Gallery</a></li>
+      <li><a href="#why">Why Us</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="#contact" class="nav-cta">Get in Touch</a>
-    <button class="ham" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
+    <a href="#contact" class="ncta">Get in Touch</a>
+    <button class="hm" id="hmbtn" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
 
-  <!-- ══ HERO ══ -->
+  <!-- ═══ HERO ═══ -->
   <section id="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-content">
-      <div class="hero-kicker r">
-        <div class="kicker-dot"></div><span class="kicker-text">Integrated Business Solutions</span>
-      </div>
-      <h1 class="hero-h r">
-        <span class="solid">RANS</span>
-        <span class="outline">Synergies</span>
-        <span class="gilded">Limited</span>
-      </h1>
-      <p class="hero-caption r">Connecting Ideas | Creating Values</p>
-      <p class="hero-desc r">A multi-disciplinary firm delivering vendor services, consultancy, HR, IT operations, AI
-        solutions, mechanical fabrication, and civil construction — all under one trusted partner.</p>
-      <div class="hero-btns r">
-        <a href="#services" class="btn-primary">Explore Services</a>
-        <a href="#contact" class="btn-secondary">Talk to Us →</a>
-      </div>
-      <div class="hero-stats r">
-        <div class="hs"><span class="hs-n">7+</span><span class="hs-l">Core Services</span></div>
-        <div class="hs"><span class="hs-n">10+</span><span class="hs-l">Sectors</span></div>
-        <div class="hs"><span class="hs-n">360°</span><span class="hs-l">Coverage</span></div>
-      </div>
+    <div class="hero-bg">
+      <img src="https://images.unsplash.com/photo-1565008576549-57569a49f3d2?w=1800&q=85"
+        alt="Industrial construction and assembly background" loading="eager" />
     </div>
-  </section>
-  <hr class="gold-line" />
-
-  <!-- ══ ABOUT ══ -->
-  <section id="about">
-    <div class="about-g">
-      <div class="about-img-wrap rl">
-        <div class="about-img">
-          <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=900&q=80"
-            alt="Rans Synergies team at work" loading="lazy" />
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hkick r">
+          <div class="kdot"></div><span class="kt">Integrated Business Solutions — Hyderabad</span>
         </div>
-        <div class="about-badge"><strong>RS</strong><span>Est. Hyderabad</span></div>
+        <h1 class="r">
+          <span class="t1">Rans</span>
+          <span class="t2">Synergies</span>
+          <span class="t3">Limited</span>
+        </h1>
+        <span class="hcaption r">Connecting Ideas &nbsp;|&nbsp; Creating Values</span>
+        <p class="hdesc r">A multi-disciplinary firm specialising in Assembly Services, vendor solutions, consultancy,
+          HR, IT, AI, fabrication, and civil construction — all under one trusted partner.</p>
+        <div class="hbtns r">
+          <a href="#assembly" class="bp">Our Assembly Services</a>
+          <a href="#contact" class="bs">Talk to Us →</a>
+        </div>
       </div>
-      <div class="rr">
-        <span class="lbl">Who We Are</span>
-        <h2 class="sec-h">Built for Modern<br /><em>Business Complexity</em></h2>
-        <p class="about-caption">"Connecting Ideas | Creating Values"</p>
-        <p class="sec-sub" style="max-width:100%;margin-bottom:1.5rem">Rans Synergies is a diverse, integrated solutions
-          company combining technical expertise, human capital, and strategic intelligence. We don't just advise — we
-          execute alongside you across industries that matter.</p>
-        <div class="pillars">
-          <div class="pillar">
-            <div class="pillar-icon">🏗️</div>
-            <div>
-              <p class="pillar-t">End-to-End Delivery</p>
-              <p class="pillar-d">From groundwork to digital transformation — full project lifecycle management.</p>
-            </div>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon">🤝</div>
-            <div>
-              <p class="pillar-t">Strategic Partnership</p>
-              <p class="pillar-d">We embed with your team rather than deliver from the outside.</p>
-            </div>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon">⚡</div>
-            <div>
-              <p class="pillar-t">Agile Execution</p>
-              <p class="pillar-d">Fast-moving, adaptive teams that respond to your timelines and budgets.</p>
-            </div>
-          </div>
+      <div class="hero-right r">
+        <div class="assembly-badge"><span>⚡</span>Spotlight: Assembly Services</div>
+        <p class="hr-title">Precision Assembly<br />for Every Industry</p>
+        <p class="hr-desc">From mechanical sub-assemblies to full product integration — our certified teams ensure
+          zero-defect delivery at scale.</p>
+        <div class="assembly-points">
+          <div class="ap">Industrial & mechanical assembly</div>
+          <div class="ap">Electrical & electronic assembly</div>
+          <div class="ap">Structural & infrastructure assembly</div>
+          <div class="ap">Quality-controlled, certified teams</div>
+        </div>
+        <div class="hr-img">
+          <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=700&q=80" alt="Assembly team at work"
+            loading="eager" />
         </div>
       </div>
     </div>
+    <div class="stats-bar">
+      <div class="sb-item r"><span class="sbn">8+</span><span class="sbl">Core Services</span></div>
+      <div class="sb-item r"><span class="sbn">10+</span><span class="sbl">Sectors Served</span></div>
+      <div class="sb-item r"><span class="sbn">360°</span><span class="sbl">Coverage</span></div>
+      <div class="sb-item r"><span class="sbn">1</span><span class="sbl">Trusted Partner</span></div>
+    </div>
   </section>
-  <hr class="gold-line" style="background:linear-gradient(90deg,transparent,rgba(201,168,76,.5),transparent)" />
 
-  <!-- ══ SERVICES ══ -->
+  <hr class="divider" />
+
+  <!-- ═══ ASSEMBLY SERVICES (MAIN FOCUS) ═══ -->
+  <section id="assembly">
+    <div class="assembly-grid">
+      <div class="assembly-visual rl">
+        <div class="av-main">
+          <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=900&q=80"
+            alt="Precision assembly and manufacturing" loading="lazy" />
+        </div>
+        <div class="av-accent">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=75" alt="Assembly technology"
+            loading="lazy" />
+        </div>
+        <div class="av-badge"><strong>#1</strong><span>Assembly Focus</span></div>
+      </div>
+      <div class="assembly-copy rr">
+        <span class="lbl">Flagship Service</span>
+        <h2 class="sh">Assembly Services<br /><em style="font-style:italic;color:var(--gold)">Built to Precision</em>
+        </h2>
+        <div class="a-highlight">
+          <p>"We don't just put parts together — we engineer outcomes, ensuring every assembly meets the highest
+            standard of safety, accuracy, and durability."</p>
+        </div>
+        <p class="sub" style="max-width:100%;margin-bottom:1.5rem">Rans Synergies' Assembly Services division brings
+          together skilled technicians, certified processes, and end-to-end project management to deliver complex
+          assemblies on time and on spec — across industrial, mechanical, civil, and technology domains.</p>
+        <div class="a-cards">
+          <div class="ac"><span class="ac-icon">🔩</span>
+            <p class="ac-t">Mechanical Assembly</p>
+            <p class="ac-d">Sub-assemblies, machine components, precision-fit parts</p>
+          </div>
+          <div class="ac"><span class="ac-icon">⚡</span>
+            <p class="ac-t">Electrical Assembly</p>
+            <p class="ac-d">Panel wiring, cable harnesses, control systems</p>
+          </div>
+          <div class="ac"><span class="ac-icon">🏗️</span>
+            <p class="ac-t">Structural Assembly</p>
+            <p class="ac-d">Steel structures, modular builds, site installation</p>
+          </div>
+          <div class="ac"><span class="ac-icon">🤖</span>
+            <p class="ac-t">Automated Assembly</p>
+            <p class="ac-d">Robotic-assisted lines, quality-controlled integration</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Assembly sub-services strip -->
+    <div class="assembly-strip r">
+      <div class="ast"><span class="ast-icon">🏭</span>
+        <p class="ast-t">Industrial Assembly</p>
+        <p class="ast-d">Heavy machinery, production-line equipment, plant installation and commissioning.</p>
+      </div>
+      <div class="ast"><span class="ast-icon">🔌</span>
+        <p class="ast-t">Electrical & Electronic</p>
+        <p class="ast-d">Switchgear panels, PCB assemblies, instrumentation, and control cabinets.</p>
+      </div>
+      <div class="ast"><span class="ast-icon">🛠️</span>
+        <p class="ast-t">On-Site Assembly</p>
+        <p class="ast-d">Field installation teams for infrastructure, equipment fit-outs, and commissioning.</p>
+      </div>
+      <div class="ast"><span class="ast-icon">✅</span>
+        <p class="ast-t">QA / QC & Testing</p>
+        <p class="ast-d">Documented inspection, load testing, certification, and handover reporting.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" style="background:linear-gradient(90deg,transparent,rgba(212,168,67,.5),transparent)" />
+
+  <!-- ═══ OTHER SERVICES ═══ -->
   <section id="services">
     <div class="svc-hdr">
       <div class="r"><span class="lbl">What We Offer</span>
-        <h2 class="sec-h">Seven Pillars<br />of Capability</h2>
+        <h2 class="sh">Seven More<br />Capabilities</h2>
       </div>
-      <p class="sec-sub r">Each service line is staffed by specialists with deep operational experience — delivering
-        quality at every level of engagement, every time.</p>
+      <p class="sub r">Beyond Assembly — Rans Synergies delivers across seven additional disciplines, each staffed by
+        specialists and backed by deep operational experience.</p>
     </div>
-    <div class="svc-grid r">
+    <div class="svc-g r">
       <div class="sc">
-        <div class="sc-img"><img src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=600&q=75"
-            alt="Vendor Services" loading="lazy" /></div>
-        <div class="sc-body"><span class="sc-icon">🛒</span>
-          <p class="sc-name">Vendor Services</p>
-          <p class="sc-desc">Sourcing, procurement, and vendor management ensuring supply chain continuity and
-            measurable cost efficiency across all categories.</p>
-          <div class="sc-bar"></div>
-        </div>
+        <span class="sc-ico">🛒</span>
+        <p class="sc-n">Vendor Services</p>
+        <p class="sc-d">Sourcing, procurement, and vendor management ensuring supply chain continuity and cost
+          efficiency.</p>
       </div>
       <div class="sc">
-        <div class="sc-img"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=75"
-            alt="Consultancy" loading="lazy" /></div>
-        <div class="sc-body"><span class="sc-icon">📋</span>
-          <p class="sc-name">Consultancy Services</p>
-          <p class="sc-desc">Strategic advisory and project consultancy tailored to your industry — from in-depth
-            analysis through to hands-on execution.</p>
-          <div class="sc-bar"></div>
-        </div>
+        <span class="sc-ico">📋</span>
+        <p class="sc-n">Consultancy</p>
+        <p class="sc-d">Strategic advisory and project consultancy — from market analysis through to execution planning.
+        </p>
       </div>
       <div class="sc">
-        <div class="sc-img"><img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&q=75"
-            alt="Human Resources" loading="lazy" /></div>
-        <div class="sc-body"><span class="sc-icon">👥</span>
-          <p class="sc-name">Human Resource</p>
-          <p class="sc-desc">Recruitment, staffing, HR management, and workforce planning — connecting you with the
-            right talent at the right time.</p>
-          <div class="sc-bar"></div>
-        </div>
+        <span class="sc-ico">👥</span>
+        <p class="sc-n">Human Resource</p>
+        <p class="sc-d">Recruitment, staffing, and workforce planning. Connecting you with the right talent at the right
+          time.</p>
       </div>
       <div class="sc">
-        <div class="sc-img"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=75"
-            alt="IT Operations" loading="lazy" /></div>
-        <div class="sc-body"><span class="sc-icon">💻</span>
-          <p class="sc-name">IT Operations</p>
-          <p class="sc-desc">Managed IT services, infrastructure management, network support, and systems integration to
-            keep your technology reliable.</p>
-          <div class="sc-bar"></div>
-        </div>
+        <span class="sc-ico">💻</span>
+        <p class="sc-n">IT Operations</p>
+        <p class="sc-d">Managed IT, infrastructure management, and systems integration for reliable day-to-day
+          operations.</p>
       </div>
       <div class="sc">
-        <div class="sc-img"><img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&q=75"
-            alt="AI Solutions" loading="lazy" /></div>
-        <div class="sc-body"><span class="sc-icon">🤖</span>
-          <p class="sc-name">Artificial Intelligence</p>
-          <p class="sc-desc">AI strategy, implementation, and automation solutions to help businesses operate smarter,
-            faster, and with greater precision.</p>
-          <div class="sc-bar"></div>
-        </div>
+        <span class="sc-ico">🤖</span>
+        <p class="sc-n">Artificial Intelligence</p>
+        <p class="sc-d">AI strategy, implementation, and automation solutions for smarter and faster business
+          operations.</p>
       </div>
       <div class="sc">
-        <div class="sc-img"><img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=75"
-            alt="Mechanical Fabrication" loading="lazy" /></div>
-        <div class="sc-body"><span class="sc-icon">⚙️</span>
-          <p class="sc-name">Mechanical Fabrication</p>
-          <p class="sc-desc">Custom metal and mechanical fabrication, precision engineering, and component manufacturing
-            to strict industrial standards.</p>
-          <div class="sc-bar"></div>
-        </div>
+        <span class="sc-ico">⚙️</span>
+        <p class="sc-n">Mechanical Fabrication</p>
+        <p class="sc-d">Custom fabrication, precision engineering, and component manufacturing to strict industrial
+          standards.</p>
       </div>
-      <div class="sc sc-wide">
-        <div class="sc-img"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=75"
-            alt="Civil Construction" loading="lazy" /></div>
+      <!-- Civil Construction — wide, featured -->
+      <div class="sc sc-feat">
         <div class="sc-body">
-          <span class="sc-icon">🏗️</span>
-          <p class="sc-name">Civil Construction</p>
-          <p class="sc-desc">Full-scope civil construction — commercial buildings, infrastructure, roads, and water
-            systems. Licensed, insured, and delivered on schedule and within budget.</p>
-          <div class="sc-bar"></div>
+          <span class="sc-ico">🏗️</span>
+          <p class="sc-n">Civil Construction</p>
+          <p class="sc-d">Full-scope civil construction — commercial buildings, roads, infrastructure, and water
+            systems. Licensed, insured, delivered on schedule and within budget.</p>
           <a href="#contact"
-            style="margin-top:1.5rem;display:inline-block;border:1px solid rgba(201,168,76,.45);color:var(--gold);padding:.6rem 1.4rem;border-radius:4px;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:all .2s;background:rgba(201,168,76,.06)"
-            onmouseover="this.style.background='rgba(201,168,76,.15)';this.style.borderColor='var(--gold)'"
-            onmouseout="this.style.background='rgba(201,168,76,.06)';this.style.borderColor='rgba(201,168,76,.45)'">Start
-            a Project →</a>
+            style="margin-top:auto;display:inline-flex;align-items:center;gap:.5rem;border:1px solid rgba(212,168,67,.4);color:var(--gold);padding:.55rem 1.2rem;border-radius:4px;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;background:rgba(212,168,67,.06);transition:all .2s;width:fit-content"
+            onmouseover="this.style.background='rgba(212,168,67,.15)'"
+            onmouseout="this.style.background='rgba(212,168,67,.06)'">Start a Project →</a>
+        </div>
+        <div class="sc-img-side">
+          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=500&q=75" alt="Civil construction"
+            loading="lazy" />
         </div>
       </div>
     </div>
   </section>
-  <hr class="gold-line" />
 
-  <!-- ══ SECTORS ══ -->
+  <hr class="divider" />
+
+  <!-- ═══ SECTORS ═══ -->
   <section id="sectors">
-    <div class="sec-hdr2">
+    <div class="sec-hdr">
       <div class="r"><span class="lbl">Industries We Serve</span>
-        <h2 class="sec-h">Active Across<br /><em>10 Vital Sectors</em></h2>
+        <h2 class="sh">Active Across<br /><em style="font-style:italic;color:var(--gold)">10 Vital Sectors</em></h2>
       </div>
-      <p class="sec-sub r">Our multi-disciplinary team brings relevant expertise to each sector — understanding unique
-        demands, regulations, and operational timelines.</p>
+      <p class="sub r">Our multi-disciplinary team brings sector-specific expertise — understanding the unique demands,
+        compliance requirements, and operational timelines of each industry.</p>
     </div>
     <div class="sector-g">
-      <div class="sector r"><span class="sector-e">🥩</span><span class="sector-l">Food Supply &amp; Distribution</span>
+      <div class="sec r"><span class="sec-e">🥩</span><span class="sec-l">Food Supply &amp; Distribution</span></div>
+      <div class="sec r"><span class="sec-e">⚡</span><span class="sec-l">Energy Solutions</span></div>
+      <div class="sec r"><span class="sec-e">📦</span><span class="sec-l">Component &amp; Product Distribution</span>
       </div>
-      <div class="sector r"><span class="sector-e">⚡</span><span class="sector-l">Energy Solutions</span></div>
-      <div class="sector r"><span class="sector-e">📦</span><span class="sector-l">Component &amp; Product
-          Distribution</span></div>
-      <div class="sector r"><span class="sector-e">🔧</span><span class="sector-l">General Services &amp;
-          Contracting</span></div>
-      <div class="sector r"><span class="sector-e">🏗️</span><span class="sector-l">Construction &amp;
-          Infrastructure</span></div>
-      <div class="sector r"><span class="sector-e">💧</span><span class="sector-l">Water &amp; Sanitation
-          Solutions</span></div>
-      <div class="sector r"><span class="sector-e">🌾</span><span class="sector-l">Agriculture &amp; Farming
-          Inputs</span></div>
-      <div class="sector r"><span class="sector-e">🚛</span><span class="sector-l">Logistics &amp; Supply Chain</span>
+      <div class="sec r"><span class="sec-e">🔧</span><span class="sec-l">General Services &amp; Contracting</span>
       </div>
-      <div class="sector r"><span class="sector-e">💻</span><span class="sector-l">ICT &amp; Digital Solutions</span>
+      <div class="sec r"><span class="sec-e">🏗️</span><span class="sec-l">Construction &amp; Infrastructure</span>
       </div>
-      <div class="sector r"><span class="sector-e">🏥</span><span class="sector-l">Health &amp; Safety Supplies</span>
-      </div>
+      <div class="sec r"><span class="sec-e">💧</span><span class="sec-l">Water &amp; Sanitation Solutions</span></div>
+      <div class="sec r"><span class="sec-e">🌾</span><span class="sec-l">Agriculture &amp; Farming Inputs</span></div>
+      <div class="sec r"><span class="sec-e">🚛</span><span class="sec-l">Logistics &amp; Supply Chain</span></div>
+      <div class="sec r"><span class="sec-e">💻</span><span class="sec-l">ICT &amp; Digital Solutions</span></div>
+      <div class="sec r"><span class="sec-e">🏥</span><span class="sec-l">Health &amp; Safety Supplies</span></div>
     </div>
   </section>
-  <hr class="gold-line" style="background:linear-gradient(90deg,transparent,rgba(201,168,76,.5),transparent)" />
 
-  <!-- ══ SHOWCASE ══ -->
+  <hr class="divider" style="background:linear-gradient(90deg,transparent,rgba(212,168,67,.5),transparent)" />
+
+  <!-- ═══ SHOWCASE ═══ -->
   <section id="showcase">
     <div class="showcase-hdr r">
       <span class="lbl" style="justify-content:center">Our Work in Action</span>
-      <h2 class="sec-h">Delivering Across<br /><em>Every Dimension</em></h2>
-      <p class="sec-sub">From steel fabrication floors to digital control rooms — a glimpse into the world Rans
-        Synergies operates in.</p>
+      <h2 class="sh" style="text-align:center">Delivering Across<br /><em
+          style="font-style:italic;color:var(--gold)">Every Dimension</em></h2>
+      <p class="sub" style="text-align:center">From precision assembly floors to digital control rooms and construction
+        sites — a glimpse into the world Rans Synergies operates in.</p>
     </div>
-    <div class="gallery r">
-      <div class="gal-item">
-        <img src="https://images.unsplash.com/photo-1565008576549-57569a49f3d2?w=900&q=80" alt="Construction site"
+    <div class="gal r">
+      <!-- image 1: assembly/fabrication — large -->
+      <div class="gi">
+        <img src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=900&q=80" alt="Industrial assembly"
           loading="lazy" />
-        <div class="gal-caption"><span>Construction</span>
-          <p>Infrastructure at Scale</p>
+        <div class="gi-cap"><span>Assembly Services</span>
+          <p>Precision at Scale</p>
         </div>
       </div>
-      <div class="gal-item">
-        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=75" alt="IT and Technology"
-          loading="lazy" />
-        <div class="gal-caption"><span>IT &amp; AI</span>
-          <p>Digital Excellence</p>
+      <!-- image 2: IT / digital -->
+      <div class="gi">
+        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=75"
+          alt="IT infrastructure and servers" loading="lazy" />
+        <div class="gi-cap"><span>IT Operations</span>
+          <p>Digital Infrastructure</p>
         </div>
       </div>
-      <div class="gal-item">
-        <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=75" alt="Mechanical engineering"
+      <!-- image 3: civil construction site -->
+      <div class="gi">
+        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=75" alt="Civil construction"
           loading="lazy" />
-        <div class="gal-caption"><span>Fabrication</span>
-          <p>Precision Engineering</p>
+        <div class="gi-cap"><span>Civil Construction</span>
+          <p>Building Tomorrow</p>
         </div>
       </div>
-      <div class="gal-item">
-        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=75" alt="Consulting team"
-          loading="lazy" />
-        <div class="gal-caption"><span>Consultancy</span>
-          <p>Strategic Advisory</p>
-        </div>
-      </div>
-      <div class="gal-item">
-        <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=600&q=75" alt="Logistics"
-          loading="lazy" />
-        <div class="gal-caption"><span>Logistics</span>
+      <!-- image 4: logistics / supply chain -->
+      <div class="gi">
+        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=75"
+          alt="Logistics warehouse and supply chain" loading="lazy" />
+        <div class="gi-cap"><span>Logistics</span>
           <p>Supply Chain Mastery</p>
+        </div>
+      </div>
+      <!-- image 5: business/consultancy -->
+      <div class="gi">
+        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=75" alt="Business consultancy"
+          loading="lazy" />
+        <div class="gi-cap"><span>Consultancy</span>
+          <p>Strategic Advisory</p>
         </div>
       </div>
     </div>
   </section>
-  <hr class="gold-line" />
 
-  <!-- ══ WHY ══ -->
+  <hr class="divider" />
+
+  <!-- ═══ WHY US ═══ -->
   <section id="why">
     <div class="why-g">
       <div class="rl">
         <span class="lbl">Why Choose Us</span>
-        <h2 class="sec-h">More Than a<br /><em>Contractor</em></h2>
-        <p class="sec-sub">When you engage Rans Synergies, you get a dedicated team that is accountable, transparent,
-          and relentlessly results-oriented.</p>
+        <h2 class="sh">More Than<br /><em style="font-style:italic;color:var(--gold)">a Contractor</em></h2>
+        <p class="sub" style="max-width:100%">When you engage Rans Synergies, you get a dedicated team that is
+          accountable, transparent, and relentlessly results-oriented — from assembly floor to boardroom.</p>
         <div class="why-pts">
-          <div class="wp"><span class="wp-n">01</span>
+          <div class="wp"><span class="wn">01</span>
             <div>
-              <p class="wp-title">Integrated Expertise</p>
-              <p class="wp-desc">Seven service lines working in sync — fewer handoffs, fewer risks, faster results.</p>
-            </div>
-          </div>
-          <div class="wp"><span class="wp-n">02</span>
-            <div>
-              <p class="wp-title">Sector Intelligence</p>
-              <p class="wp-desc">Experience across 10 industries gives us context that generalists simply don't have.
+              <p class="wt">Integrated Expertise</p>
+              <p class="wd">Eight service lines working in sync — fewer handoffs, fewer risks, faster results for you.
               </p>
             </div>
           </div>
-          <div class="wp"><span class="wp-n">03</span>
+          <div class="wp"><span class="wn">02</span>
             <div>
-              <p class="wp-title">Scalable Solutions</p>
-              <p class="wp-desc">From small contracts to large-scale infrastructure — we scale with your ambition.</p>
+              <p class="wt">Assembly-First Mindset</p>
+              <p class="wd">Our Assembly Services team leads with precision — a discipline that permeates every other
+                service we offer.</p>
+            </div>
+          </div>
+          <div class="wp"><span class="wn">03</span>
+            <div>
+              <p class="wt">Sector Intelligence</p>
+              <p class="wd">Experience across 10 industries gives us context and compliance awareness that generalists
+                lack.</p>
+            </div>
+          </div>
+          <div class="wp"><span class="wn">04</span>
+            <div>
+              <p class="wt">Scalable Solutions</p>
+              <p class="wd">From small contracts to large-scale infrastructure — our capacity scales with your ambition.
+              </p>
             </div>
           </div>
         </div>
       </div>
       <div class="metrics rr">
-        <div class="mc"><span class="mc-n">10+</span><span class="mc-l">Sectors Served</span></div>
-        <div class="mc"><span class="mc-n">7</span><span class="mc-l">Core Services</span></div>
-        <div class="mc"><span class="mc-n">360°</span><span class="mc-l">Delivery Scope</span></div>
-        <div class="mc"><span class="mc-n">1</span><span class="mc-l">Trusted Partner</span></div>
+        <div class="mc"><span class="mn">8+</span><span class="ml">Core Services</span></div>
+        <div class="mc"><span class="mn">10+</span><span class="ml">Sectors</span></div>
+        <div class="mc"><span class="mn">360°</span><span class="ml">Delivery Scope</span></div>
+        <div class="mc"><span class="mn">1</span><span class="ml">Trusted Partner</span></div>
       </div>
     </div>
   </section>
-  <hr class="gold-line" />
 
-  <!-- ══ CONTACT ══ -->
+  <hr class="divider" style="background:linear-gradient(90deg,transparent,rgba(212,168,67,.5),transparent)" />
+
+  <!-- ═══ CONTACT ═══ -->
   <section id="contact">
-    <div class="contact-bg"></div>
+    <div class="contact-glow"></div>
     <div class="contact-g">
       <div class="rl">
         <span class="lbl">Get in Touch</span>
-        <h2 class="sec-h">Let's Build<br /><em>Together</em></h2>
-        <p class="sec-sub" style="max-width:100%;margin-bottom:2.5rem">Whether you have a specific project in mind or
-          want to explore how Rans Synergies can support your business, we'd love to hear from you.</p>
-        <div class="c-list">
-          <div class="c-row">
-            <div class="c-ico">✉️</div>
-            <div class="c-info"><strong>Email</strong><a href="mailto:info@ranssynergies.com">info@ranssynergies.com</a>
+        <h2 class="sh">Let's Build<br /><em style="font-style:italic;color:var(--gold)">Together</em></h2>
+        <p class="sub" style="max-width:100%;margin-bottom:2.5rem">Whether you need an assembly solution, a construction
+          project delivered, or want to explore how Rans Synergies can support your business — we respond within one
+          business day.</p>
+        <div class="ci-list">
+          <div class="ci">
+            <div class="ci-ico">✉️</div>
+            <div class="ci-t"><strong>Email</strong><a href="mailto:info@ranssynergies.com">info@ranssynergies.com</a>
             </div>
           </div>
-          <div class="c-row">
-            <div class="c-ico">📍</div>
-            <div class="c-info"><strong>Location</strong><span>Hyderabad, Telangana, India</span></div>
+          <div class="ci">
+            <div class="ci-ico">📍</div>
+            <div class="ci-t"><strong>Location</strong><span>Hyderabad, Telangana, India</span></div>
           </div>
-          <div class="c-row">
-            <div class="c-ico">🌐</div>
-            <div class="c-info"><strong>Website</strong><span>ranssynergies.com</span></div>
+          <div class="ci">
+            <div class="ci-ico">🌐</div>
+            <div class="ci-t"><strong>Website</strong><span>ranssynergies.com</span></div>
           </div>
         </div>
       </div>
       <div class="rr">
         <div class="form-card">
-          <p class="form-title">Send us a <span>message</span></p>
-          <!-- Formspree (free) — sign up at formspree.io, create a form, replace YOUR_FORM_ID -->
-          <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <p class="ftitle">Send us a <em>message</em></p>
+          <div id="fnote-setup"
+            style="display:none;background:rgba(212,168,67,.09);border:1px solid rgba(212,168,67,.28);border-radius:6px;padding:.8rem 1rem;margin-bottom:1.1rem;font-size:.74rem;color:rgba(212,168,67,.95);line-height:1.7">
+            ⚙️ <strong>Email not connected yet.</strong><br />
+            Connect your GoDaddy email in 5 min:<br />
+            1. Sign up free at <a href="https://www.emailjs.com" target="_blank" rel="noopener"
+              style="color:var(--gold)">emailjs.com</a><br />
+            2. Add SMTP service → Host: <code
+              style="background:rgba(0,0,0,.3);padding:0 3px;border-radius:2px">smtpout.secureserver.net</code>, Port:
+            <code style="background:rgba(0,0,0,.3);padding:0 3px;border-radius:2px">465</code>, your GoDaddy email +
+            password<br />
+            3. Create a template → paste IDs into the script at bottom of index.html
+          </div>
+          <div class="finner" id="finner">
             <div class="f2">
-              <div class="fg"><label for="fname">Full Name</label><input type="text" id="fname" name="name"
-                  placeholder="John Smith" required /></div>
-              <div class="fg"><label for="femail">Email Address</label><input type="email" id="femail" name="email"
+              <div class="fg"><label for="fname">Full Name</label><input type="text" id="fname" placeholder="John Smith"
+                  required /></div>
+              <div class="fg"><label for="femail">Email Address</label><input type="email" id="femail"
                   placeholder="your@email.com" required /></div>
             </div>
-            <div class="fg"><label for="fcompany">Company / Organisation</label><input type="text" id="fcompany"
-                name="company" placeholder="Your company name" /></div>
+            <div class="fg"><label for="fcomp">Company</label><input type="text" id="fcomp"
+                placeholder="Your company name" /></div>
             <div class="fg">
-              <label for="fservice">Service of Interest</label>
-              <select id="fservice" name="service">
+              <label for="fsvc">Service of Interest</label>
+              <select id="fsvc">
                 <option value="">Select a service…</option>
+                <option>Assembly Services</option>
                 <option>Vendor Services</option>
                 <option>Consultancy Services</option>
                 <option>Human Resource</option>
@@ -1915,40 +2239,45 @@
                 <option>Other / Not sure</option>
               </select>
             </div>
-            <div class="fg"><label for="fmsg">Message</label><textarea id="fmsg" name="message"
+            <div class="fg"><label for="fmsg">Message</label><textarea id="fmsg"
                 placeholder="Tell us about your project, requirements, or any questions…" required></textarea></div>
-            <button type="submit" class="f-send">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <button type="button" id="fsend" class="fsend">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <path d="M22 2L11 13" />
                 <path d="M22 2L15 22 11 13 2 9l20-7z" />
               </svg>
               Send Message
             </button>
-            <p class="f-note">We respond within 1 business day. Your information is kept confidential.</p>
-          </form>
-          <div class="success-msg" id="success">
-            <div class="check">✅</div>
-            <h3>Message Received!</h3>
-            <p>Thank you for reaching out. Our team will get back to you within one business day.</p>
+            <p class="fnote">Sends directly to <strong
+                style="color:rgba(255,255,255,.6)">info@ranssynergies.com</strong> — we respond within 1 business day.
+            </p>
+            <div class="fstatus" id="fstatus"></div>
+          </div>
+          <div class="success-panel" id="spanel">
+            <div class="sp-check">✅</div>
+            <h3 class="sp-h">Message Received!</h3>
+            <p class="sp-p">Thank you for contacting Rans Synergies. Our team will respond to info@ranssynergies.com
+              within one business day.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ══ FOOTER ══ -->
+  <!-- ═══ FOOTER ═══ -->
   <footer>
-    <div class="foot-top">
+    <div class="ft">
       <div>
-        <div class="logo-sq foot-brand" style="margin-bottom:1rem">RS</div>
-        <p class="foot-name">Rans Synergies</p>
-        <p class="foot-tag">Connecting Ideas | Creating Values</p>
-        <p class="foot-desc">Integrated business solutions spanning vendor services, consultancy, HR, IT operations, AI,
-          mechanical fabrication, and civil construction. Based in Hyderabad.</p>
+        <div class="fb-ico">RS</div>
+        <p class="fb-n">Rans Synergies</p>
+        <p class="fb-t">Connecting Ideas | Creating Values</p>
+        <p class="fb-d">Integrated business solutions — Assembly Services, vendor, consultancy, HR, IT, AI, fabrication,
+          and civil construction. Based in Hyderabad, India.</p>
       </div>
-      <div class="foot-col">
+      <div class="fc">
         <h4>Services</h4>
         <ul>
+          <li><a href="#assembly">Assembly Services</a></li>
           <li><a href="#services">Vendor Services</a></li>
           <li><a href="#services">Consultancy</a></li>
           <li><a href="#services">Human Resource</a></li>
@@ -1958,10 +2287,10 @@
           <li><a href="#services">Civil Construction</a></li>
         </ul>
       </div>
-      <div class="foot-col">
+      <div class="fc">
         <h4>Company</h4>
         <ul>
-          <li><a href="#about">About Us</a></li>
+          <li><a href="#hero">Home</a></li>
           <li><a href="#sectors">Sectors</a></li>
           <li><a href="#showcase">Gallery</a></li>
           <li><a href="#why">Why Us</a></li>
@@ -1970,81 +2299,182 @@
         </ul>
       </div>
     </div>
-    <div class="foot-bottom">
+    <div class="fb">
       <p>© 2025 Rans Synergies. All rights reserved.</p>
       <a href="mailto:info@ranssynergies.com">info@ranssynergies.com</a>
     </div>
   </footer>
 
   <script>
-    /* ── Cursor ── */
-    const cur = document.getElementById('cur'), curo = document.getElementById('cur-o');
-    let mx = 0, my = 0, ox = 0, oy = 0;
-    document.addEventListener('mousemove', e => {mx = e.clientX; my = e.clientY; cur.style.left = mx + 'px'; cur.style.top = my + 'px'});
-    (function loop() {ox += (mx - ox) * .1; oy += (my - oy) * .1; curo.style.left = ox + 'px'; curo.style.top = oy + 'px'; requestAnimationFrame(loop)})();
+    /* ═══════════════════════════════════════════════════════════════
+       HOW TO CONNECT YOUR GODADDY EMAIL (info@ranssynergies.com)
+       ═══════════════════════════════════════════════════════════════
+    
+       EmailJS supports GoDaddy email via SMTP. Follow these steps:
+    
+       STEP 1 — Create free EmailJS account
+       → Go to https://www.emailjs.com and sign up (free = 200 emails/month)
+    
+       STEP 2 — Add GoDaddy as Email Service
+       → Dashboard → Email Services → Add New Service → choose "SMTP"
+       → Fill in these GoDaddy SMTP settings:
+            Host:     smtpout.secureserver.net
+            Port:     465  (or 587)
+            Username: info@ranssynergies.com   ← your full GoDaddy email
+            Password: [your GoDaddy email password]
+            Secure:   Yes (SSL)
+       → Name it anything e.g. "GoDaddy"
+       → Click Connect → it will send a test email to confirm
+       → Copy the Service ID  (looks like: service_xxxxxxx)
+    
+       STEP 3 — Create Email Template
+       → Dashboard → Email Templates → Create New Template
+       → Set:
+            To Email:   info@ranssynergies.com
+            From Name:  {{from_name}}
+            Reply To:   {{from_email}}
+            Subject:    New Enquiry from {{from_name}} — Rans Synergies
+            Body:
+              Name: {{from_name}}
+              Email: {{from_email}}
+              Company: {{company}}
+              Service: {{service}}
+    
+              Message:
+              {{message}}
+       → Save → Copy Template ID  (looks like: template_xxxxxxx)
+    
+       STEP 4 — Get your Public Key
+       → Dashboard → Account → API Keys → copy Public Key
+    
+       STEP 5 — Paste the 3 values below ↓
+       ═══════════════════════════════════════════════════════════════ */
 
-    /* ── Particles ── */
-    const cvs = document.getElementById('particles');
-    const ctx = cvs.getContext('2d');
+    const EJS_KEY = '-O3zfCoZe28F8_gRZ';    // Account → API Keys
+    const EJS_SERVICE = 'service_4egzgub';   // Email Services (GoDaddy SMTP)
+    const EJS_TEMPLATE = 'template_11jvlbj';  // Email Templates
+
+    const EJS_READY = !EJS_KEY.startsWith('YOUR') &&
+      !EJS_SERVICE.startsWith('YOUR') &&
+      !EJS_TEMPLATE.startsWith('YOUR');
+
+    if (EJS_READY) {emailjs.init({publicKey: EJS_KEY});}
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const banner = document.getElementById('fnote-setup');
+      if (banner) banner.style.display = EJS_READY ? 'none' : 'block';
+    });
+
+    document.getElementById('fsend').addEventListener('click', async () => {
+      const name = document.getElementById('fname').value.trim();
+      const email = document.getElementById('femail').value.trim();
+      const company = document.getElementById('fcomp').value.trim();
+      const service = document.getElementById('fsvc').value;
+      const message = document.getElementById('fmsg').value.trim();
+      const btn = document.getElementById('fsend');
+      const status = document.getElementById('fstatus');
+
+      // Basic validation
+      if (!name) {showErr('⚠ Please enter your name.'); return;}
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showErr('⚠ Please enter a valid email address.'); return;
+      }
+      if (!message) {showErr('⚠ Please enter a message.'); return;}
+
+      function showErr(msg) {
+        status.className = 'fstatus err'; status.textContent = msg;
+      }
+
+      // Not configured yet → open pre-filled email client as fallback
+      if (!EJS_READY) {
+        const body = encodeURIComponent(
+          `Name: ${name}\nEmail: ${email}\nCompany: ${company || 'N/A'}\nService: ${service || 'N/A'}\n\nMessage:\n${message}`
+        );
+        window.location.href = `mailto:info@ranssynergies.com?subject=Enquiry from ${encodeURIComponent(name)}&body=${body}`;
+        status.className = 'fstatus ok';
+        status.textContent = '✓ Opening your email client as a fallback (EmailJS not configured yet).';
+        return;
+      }
+
+      // Send via EmailJS → GoDaddy SMTP
+      btn.disabled = true;
+      btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Sending…`;
+      status.className = 'fstatus'; status.textContent = '';
+
+      try {
+        await emailjs.send(EJS_SERVICE, EJS_TEMPLATE, {
+          from_name: name,
+          from_email: email,
+          company: company || 'Not provided',
+          service: service || 'Not specified',
+          message: message,
+        });
+        // Success
+        document.getElementById('finner').style.display = 'none';
+        document.getElementById('spanel').style.display = 'flex';
+      } catch (err) {
+        const code = err?.status || '';
+        let msg = '⚠ Sending failed. Please email us at info@ranssynergies.com';
+        if (code === 412) msg = '⚠ Email service not connected. Check your GoDaddy SMTP settings in EmailJS.';
+        if (code === 401) msg = '⚠ Invalid EmailJS key. Please check your Public Key.';
+        status.className = 'fstatus err';
+        status.textContent = msg;
+        btn.disabled = false;
+        btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg> Try Again`;
+        console.error('EmailJS error:', err);
+      }
+    });
+
+    /* ─── Cursor ─── */
+    const dot = document.getElementById('dot'), ring = document.getElementById('ring');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+    });
+    (function loop() {
+      rx += (mx - rx) * .1; ry += (my - ry) * .1;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(loop);
+    })();
+
+    /* ─── Particles ─── */
+    const cvs = document.getElementById('particles'), ctx = cvs.getContext('2d');
     let W, H, pts = [];
-    function resize() {W = cvs.width = window.innerWidth; H = cvs.height = window.innerHeight}
+    function resize() {W = cvs.width = window.innerWidth; H = cvs.height = window.innerHeight;}
     resize(); window.addEventListener('resize', resize);
-    class Pt {constructor() {this.reset()} reset() {this.x = Math.random() * W; this.y = Math.random() * H; this.r = Math.random() * .8 + .3; this.sp = Math.random() * .25 + .05; this.op = Math.random() * .4 + .1; this.dx = (Math.random() - .5) * .15} update() {this.y -= this.sp; this.x += this.dx; if (this.y < -5) this.reset(); this.y = this.y < -5 ? H : this.y} draw() {ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2); ctx.fillStyle = `rgba(201,168,76,${this.op})`; ctx.fill()} }
-    for (let i = 0; i < 80; i++)pts.push(new Pt());
-    (function anim() {ctx.clearRect(0, 0, W, H); pts.forEach(p => {p.update(); p.draw()}); requestAnimationFrame(anim)})();
+    class P {
+      constructor() {this.reset(true);}
+      reset(init) {
+        this.x = Math.random() * W; this.y = init ? Math.random() * H : H + 5;
+        this.r = Math.random() * .7 + .3; this.sp = Math.random() * .2 + .06;
+        this.op = Math.random() * .35 + .08; this.dx = (Math.random() - .5) * .12;
+      }
+      update() {this.y -= this.sp; this.x += this.dx; if (this.y < -5) this.reset(false);}
+      draw() {ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2); ctx.fillStyle = `rgba(212,168,67,${this.op})`; ctx.fill();}
+    }
+    for (let i = 0; i < 70; i++) pts.push(new P());
+    (function anim() {ctx.clearRect(0, 0, W, H); pts.forEach(p => {p.update(); p.draw();}); requestAnimationFrame(anim);})();
 
-    /* ── Nav scroll ── */
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {nav.classList.toggle('scrolled', window.scrollY > 60)});
+    /* ─── Nav scroll ─── */
+    const navEl = document.getElementById('nav');
+    window.addEventListener('scroll', () => navEl.classList.toggle('sc', window.scrollY > 60));
 
-    /* ── Scroll reveal ── */
+    /* ─── Scroll Reveal ─── */
     const obs = new IntersectionObserver((entries) => {
-      entries.forEach((e, i) => {if (e.isIntersecting) {setTimeout(() => e.target.classList.add('v'), i * 70); obs.unobserve(e.target)} });
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {setTimeout(() => e.target.classList.add('v'), i * 65); obs.unobserve(e.target);}
+      });
     }, {threshold: .07});
     document.querySelectorAll('.r,.rl,.rr').forEach(el => obs.observe(el));
 
-    /* ── Mobile menu ── */
-    const ham = document.getElementById('ham'), nlinks = document.querySelector('.nav-links');
-    ham.addEventListener('click', () => {
-      const open = nlinks.style.display === 'flex';
-      nlinks.style.cssText = open ? 'display:none' : 'display:flex;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:rgba(8,9,12,.96);padding:1.75rem 5vw;gap:1.3rem;border-bottom:1px solid rgba(201,168,76,.15);backdrop-filter:blur(20px)';
+    /* ─── Mobile Nav ─── */
+    const hmbtn = document.getElementById('hmbtn'), nvlinks = document.querySelector('.nv');
+    hmbtn.addEventListener('click', () => {
+      const open = nvlinks.style.display === 'flex';
+      nvlinks.style.cssText = open ? 'display:none' : 'display:flex;flex-direction:column;position:absolute;top:70px;left:0;right:0;background:rgba(7,8,13,.97);padding:1.75rem 5vw;gap:1.3rem;border-bottom:1px solid rgba(212,168,67,.15);backdrop-filter:blur(24px)';
     });
-    nlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {nlinks.style.display = 'none'}));
-
-    /* ── Form success ── */
-    const form = document.getElementById('contact-form');
-    const success = document.getElementById('success');
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const name = document.getElementById('fname').value;
-      const email = document.getElementById('femail').value;
-      const company = document.getElementById('fcompany').value;
-      const service = document.getElementById('fservice').value;
-      const message = document.getElementById('fmsg').value;
-
-      const subject = `Website Query - ${service || 'General'}`;
-
-      const body =
-        `Name: ${name}
-Email: ${email}
-Company: ${company || 'Not provided'}
-Service: ${service || 'Not specified'}
-
-Message:
-${message}`;
-
-      const mailtoLink =
-        `mailto:info@ranssynergies.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-      // Open email client
-      window.location.href = mailtoLink;
-
-      // Optional UX improvement
-      form.style.display = 'none';
-      success.style.display = 'flex';
-    });
+    nvlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {nvlinks.style.display = 'none';}));
   </script>
 </body>
 
