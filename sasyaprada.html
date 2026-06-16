@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Sasyaprada — Landscape & Garden Management | RANS Synergies</title>
+<meta name="description" content="Sasyaprada by RANS Synergies — landscape design, garden development and scientific maintenance for villas, apartments and communities in Hyderabad.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2064%2064%27%3E%3Crect%20width%3D%2764%27%20height%3D%2764%27%20rx%3D%2714%27%20fill%3D%27%23234B3A%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F4EFE4;--bg2:#EBE3D2;--bg3:#FCFAF4;
+  --gold:#A9792B;--gold2:#C7A24B;
+  --w:#23201A;--muted:rgba(35,32,26,.66);--dim:rgba(35,32,26,.46);--glass:#FCFAF4;--gb:rgba(35,32,26,.12);
+  --serif:'Playfair Display',Georgia,serif;--sans:'Inter',system-ui,sans-serif;
+  --acc:#234B3A;--nav:70px;
+  --sp:#2B5741;--sp2:#3A7057;--sp-gold:#C8A84B;--sp-light:#EEF4EF;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--w);overflow-x:hidden;line-height:1.7}
+a{text-decoration:none;color:inherit}
+::selection{background:var(--sp);color:#fff}
+.wrap{max-width:1200px;margin:0 auto;padding:0 5vw}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:800;height:var(--nav);display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:rgba(250,246,238,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(35,32,26,.1)}
+.nl{display:flex;align-items:center;gap:.8rem}
+.lm{width:42px;height:42px;display:flex;align-items:center;justify-content:center}
+.lm svg{width:100%;height:100%;display:block}
+.lw{display:flex;flex-direction:column;line-height:1.15}
+.ln{font-family:var(--serif);font-weight:700;font-size:1rem;letter-spacing:.04em}
+.lt{font-size:.46rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.nv{display:flex;gap:1.6rem;list-style:none}
+.nv a{font-size:.72rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);transition:color .2s}
+.nv a:hover,.nv a.on{color:var(--w)}
+.ncta{display:inline-flex;align-items:center;gap:.45rem;border:1px solid rgba(212,168,67,.5);color:var(--gold);padding:.5rem 1.15rem;border-radius:5px;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(212,168,67,.07);transition:all .25s;white-space:nowrap}
+.ncta:hover{background:var(--gold);color:var(--bg)}
+.hm{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:5px}
+.hm span{display:block;width:23px;height:2px;background:var(--w);border-radius:2px}
+
+/* BREADCRUMB */
+.breadcrumb{padding:.75rem 0;font-size:.7rem;color:var(--dim);border-bottom:1px solid rgba(43,87,65,.1);background:rgba(43,87,65,.03)}
+.breadcrumb a{color:var(--sp);font-weight:500}
+
+/* HERO */
+.sp-hero{padding:calc(var(--nav) + 4vh) 0 0;background:linear-gradient(160deg,#1D3D2A 0%,var(--sp) 45%,#3A7057 100%);color:#fff;position:relative;overflow:hidden}
+.sp-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(900px 600px at 80% 20%,rgba(200,168,75,.18),transparent 60%);pointer-events:none}
+.sp-hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;padding:4vh 0 0;min-height:420px}
+.eyebrow{font-size:.62rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--sp-gold);margin-bottom:1rem;display:flex;align-items:center;gap:.7rem}
+.eyebrow::before{content:'';width:26px;height:1.5px;background:var(--sp-gold)}
+.sp-hero-inner h1{font-family:var(--serif);font-size:clamp(2.6rem,5.5vw,4.4rem);font-weight:700;line-height:1.05;letter-spacing:.02em;margin-bottom:.7rem;color:#fff}
+.sp-hero-inner h1 em{font-style:italic;color:var(--sp-gold)}
+.sp-hero-inner p{font-size:.98rem;color:rgba(255,255,255,.78);line-height:1.85;max-width:500px;margin-bottom:1.8rem}
+.sp-hbtns{display:flex;gap:.9rem;flex-wrap:wrap}
+.btn-sp{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.9rem;border-radius:6px;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:transform .2s,box-shadow .3s}
+.btn-sp-p{background:var(--sp-gold);color:#1D3D2A;box-shadow:0 0 28px -8px rgba(200,168,75,.6)}
+.btn-sp-p:hover{transform:translateY(-2px)}
+.btn-sp-o{border:1px solid rgba(255,255,255,.35);color:#fff;background:rgba(255,255,255,.08)}
+.btn-sp-o:hover{border-color:#fff;background:rgba(255,255,255,.18);transform:translateY(-2px)}
+.sp-hero-logo{display:flex;align-items:center;justify-content:center}
+.sp-hero-logo img{width:280px;height:280px;object-fit:contain;border-radius:50%;box-shadow:0 0 80px rgba(0,0,0,.35)}
+.sp-hero-wave{display:block;width:100%;line-height:0;margin-top:2.5rem}
+.sp-hero-wave svg{display:block;width:100%}
+
+/* STATS */
+.sp-stats{display:grid;grid-template-columns:repeat(4,1fr);background:var(--sp);border-bottom:1px solid rgba(200,168,75,.2)}
+.sp-st{padding:1.3rem 1.5rem;border-right:1px solid rgba(200,168,75,.15);text-align:center}
+.sp-st:last-child{border-right:none}
+.sp-stn{font-family:var(--serif);font-size:1.8rem;font-weight:700;color:var(--sp-gold);line-height:1;display:block}
+.sp-stl{font-size:.58rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:.3rem;display:block}
+
+/* COMMON */
+.pad{padding:5rem 0}
+.sp-bg{background:var(--sp-light)}
+.sec-hdr{margin-bottom:2.6rem}
+.lbl{display:inline-flex;align-items:center;gap:.6rem;font-size:.64rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--sp);margin-bottom:.9rem}
+.lbl::before{content:'';width:26px;height:1.5px;background:var(--sp)}
+.sec-hdr h2{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,3rem);font-weight:700;line-height:1.12;margin-bottom:.9rem}
+.sec-hdr h2 em{font-style:italic;color:var(--sp)}
+.sec-hdr p{font-size:.95rem;color:var(--muted);line-height:1.9;font-weight:300;max-width:640px}
+.divider{height:1px;border:none;background:linear-gradient(90deg,transparent,rgba(43,87,65,.25),transparent)}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start}
+.about-photo{border-radius:16px;overflow:hidden;box-shadow:0 20px 60px -20px rgba(43,87,65,.25)}
+.about-photo img{width:100%;display:block;object-fit:cover;height:460px}
+.vmp{margin-bottom:1.4rem}
+.vmp-label{font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--sp);margin-bottom:.35rem}
+.vmp-text{font-size:.88rem;color:var(--muted);line-height:1.8}
+.approach-pills{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.2rem}
+.pill{display:inline-flex;align-items:center;gap:.4rem;font-size:.72rem;font-weight:500;color:var(--sp);border:1px solid rgba(43,87,65,.3);border-radius:30px;padding:.38rem .85rem;background:rgba(43,87,65,.05)}
+.pill::before{content:'✓';font-size:.65rem;color:var(--sp);font-weight:700}
+
+/* SERVICES */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+.svc-card{background:#fff;border:1px solid rgba(43,87,65,.14);border-radius:14px;padding:0;transition:transform .3s,border-color .3s,box-shadow .3s;position:relative;overflow:hidden}
+.svc-card-body{padding:1.7rem}
+.svc-img{width:100%;height:160px;object-fit:cover;display:block}
+.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--sp),var(--sp2));transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.svc-card:hover{transform:translateY(-6px);border-color:rgba(43,87,65,.35);box-shadow:0 16px 40px -18px rgba(43,87,65,.25)}
+.svc-card:hover::before{transform:scaleX(1)}
+.svc-ico{font-size:2rem;margin-bottom:.8rem;display:block}
+.svc-t{font-family:var(--serif);font-weight:700;font-size:1.05rem;margin-bottom:.4rem;color:var(--sp)}
+.svc-d{font-size:.78rem;color:var(--muted);line-height:1.65;margin-bottom:.9rem}
+.svc-list{list-style:none;display:flex;flex-direction:column;gap:.3rem}
+.svc-list li{font-size:.73rem;color:rgba(35,32,26,.72);padding-left:1rem;position:relative}
+.svc-list li::before{content:'·';position:absolute;left:0;color:var(--sp);font-weight:700;font-size:1.1rem;line-height:1.1}
+
+/* LANDSCAPE ELEMENTS */
+.le-cols{display:grid;grid-template-columns:1fr 1px 1fr;gap:2rem;align-items:start}
+.le-div{background:linear-gradient(180deg,transparent,rgba(43,87,65,.25),transparent);align-self:stretch}
+.le-col-title{display:inline-flex;align-items:center;justify-content:center;background:var(--sp);color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:.5rem 1.4rem;border-radius:30px;margin-bottom:1.2rem}
+.le-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.65rem}
+.le-tag{background:rgba(43,87,65,.08);border:1px solid rgba(43,87,65,.15);border-radius:8px;padding:.55rem .7rem;font-size:.72rem;color:var(--sp);font-weight:500;text-align:center;transition:background .2s}
+.le-tag:hover{background:rgba(43,87,65,.18)}
+
+/* PROMISE */
+.promise-band{background:var(--sp);color:#fff;padding:3rem 0}
+.promise-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1rem;text-align:center}
+.pi-ico{font-size:1.6rem;margin-bottom:.5rem}
+.promise-grid p{font-size:.68rem;font-weight:500;color:rgba(255,255,255,.8);line-height:1.4}
+
+/* SMART IRRIGATION SHOWCASE */
+.irr-wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:2.5rem;align-items:center}
+.irr-photo{border-radius:16px;overflow:hidden;box-shadow:0 20px 60px -20px rgba(43,87,65,.25);position:relative}
+.irr-photo img{width:100%;display:block;object-fit:cover;height:380px}
+.irr-tag{position:absolute;bottom:1rem;left:1rem;background:rgba(29,61,42,.85);color:#fff;font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.4rem .9rem;border-radius:20px}
+.irr-types{display:flex;flex-direction:column;gap:1rem;margin-top:1.4rem}
+.irr-type{display:grid;grid-template-columns:110px 1fr;gap:1rem;align-items:center;background:#fff;border:1px solid rgba(43,87,65,.14);border-radius:12px;overflow:hidden;transition:border-color .3s,box-shadow .3s}
+.irr-type:hover{border-color:rgba(43,87,65,.3);box-shadow:0 8px 24px -10px rgba(43,87,65,.15)}
+.irr-type img{width:110px;height:90px;object-fit:cover;display:block}
+.irr-type-body{padding:.9rem 1.1rem .9rem 0}
+.irr-type-t{font-family:var(--serif);font-weight:700;font-size:.92rem;color:var(--sp);margin-bottom:.2rem}
+.irr-type-d{font-size:.76rem;color:var(--muted);line-height:1.6}
+.irr-benefits{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.4rem}
+.irr-benefit{font-size:.72rem;font-weight:500;color:var(--sp);border:1px solid rgba(43,87,65,.3);border-radius:30px;padding:.38rem .85rem;background:rgba(43,87,65,.05)}
+
+
+.sci-grid{display:flex;flex-direction:column;gap:1.1rem}
+.sci-row{display:grid;grid-template-columns:56px 1fr;gap:1.1rem;align-items:start;padding:1.2rem;background:#fff;border:1px solid rgba(43,87,65,.12);border-radius:12px;transition:border-color .3s,box-shadow .3s}
+.sci-row:hover{border-color:rgba(43,87,65,.3);box-shadow:0 8px 24px -10px rgba(43,87,65,.15)}
+.sci-ico-wrap{width:48px;height:48px;background:rgba(43,87,65,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+.sci-t{font-family:var(--serif);font-weight:700;font-size:.95rem;color:var(--sp);margin-bottom:.25rem}
+.sci-d{font-size:.77rem;color:var(--muted);line-height:1.65}
+.sci-wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+
+/* OUR WORKS GALLERY */
+.works-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.work-item{position:relative;border-radius:12px;overflow:hidden;box-shadow:0 12px 32px -16px rgba(43,87,65,.25)}
+.work-item img{width:100%;height:200px;object-fit:cover;display:block}
+.work-badge{position:absolute;top:.7rem;left:.7rem;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .8rem;border-radius:20px;color:#fff}
+.work-badge.before{background:rgba(189,95,50,.85)}
+.work-badge.after{background:rgba(43,87,65,.85)}
+.works-sub{font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--sp);margin:2.4rem 0 1.1rem;text-align:center}
+.balcony-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.balcony-grid img{width:100%;height:170px;object-fit:cover;border-radius:12px;display:block;box-shadow:0 12px 32px -16px rgba(43,87,65,.25)}
+
+
+.amaint-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:2.8rem;align-items:start}
+.amaint-list{display:flex;flex-direction:column;gap:.9rem}
+.am-item{display:flex;gap:1rem;align-items:flex-start;padding:1rem 1.1rem;background:#fff;border:1px solid rgba(43,87,65,.12);border-radius:11px;transition:border-color .3s}
+.am-item:hover{border-color:rgba(43,87,65,.3)}
+.am-ico{font-size:1.3rem;flex-shrink:0;margin-top:.05rem}
+.am-t{font-size:.86rem;font-weight:600;color:var(--sp);margin-bottom:.15rem}
+.am-d{font-size:.74rem;color:var(--muted);line-height:1.6}
+.amaint-why{background:var(--sp);color:#fff;border-radius:16px;padding:2rem;position:sticky;top:calc(var(--nav) + 1rem)}
+.amaint-why h3{font-family:var(--serif);font-weight:700;font-size:1.2rem;color:var(--sp-gold);margin-bottom:1.1rem}
+.why-list{list-style:none;display:flex;flex-direction:column;gap:.7rem;margin-bottom:1.6rem}
+.why-list li{font-size:.78rem;color:rgba(255,255,255,.85);display:flex;gap:.6rem;align-items:flex-start}
+.why-list li::before{content:'✓';color:var(--sp-gold);font-weight:700;flex-shrink:0}
+.ideal-for p{font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.65rem}
+.ideal-tags{display:flex;flex-wrap:wrap;gap:.5rem}
+.ideal-tag{font-size:.7rem;font-weight:500;color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:.3rem .8rem}
+
+/* WHY CHOOSE */
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem}
+.wc-card{background:#fff;border:1px solid rgba(43,87,65,.14);border-radius:14px;padding:1.6rem;display:flex;gap:1rem;align-items:flex-start;transition:transform .3s,border-color .3s,box-shadow .3s}
+.wc-card:hover{transform:translateY(-5px);border-color:rgba(43,87,65,.35);box-shadow:0 12px 32px -14px rgba(43,87,65,.2)}
+.wc-ico{width:48px;height:48px;min-width:48px;border-radius:10px;background:rgba(43,87,65,.1);display:flex;align-items:center;justify-content:center;font-size:1.5rem}
+.wc-t{font-family:var(--serif);font-weight:700;font-size:1rem;color:var(--sp);margin-bottom:.3rem}
+.wc-d{font-size:.78rem;color:var(--muted);line-height:1.6}
+
+/* CTA BAND */
+.cta-band{background:linear-gradient(135deg,var(--sp) 0%,#1D3D2A 100%);color:#fff;padding:4.5rem 0;text-align:center}
+.cta-band h2{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;margin-bottom:.7rem}
+.cta-band>div>p{font-size:.95rem;color:rgba(255,255,255,.75);max-width:520px;margin:0 auto 2rem}
+.cta-row{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--gb);padding:3.5rem 0 2rem}
+.ft-grid{display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr;gap:2.2rem;padding-bottom:2.2rem;border-bottom:1px solid var(--gb)}
+.fb-n{font-family:var(--serif);font-weight:700;font-size:1rem;letter-spacing:.06em;margin:.8rem 0 .25rem}
+.fb-t{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:.8rem;margin-bottom:.6rem}
+.fb-d{font-size:.76rem;color:var(--muted);line-height:1.8;max-width:270px;font-weight:300}
+.fc h4{font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:.9rem}
+.fc a,.fc span{font-size:.76rem;color:var(--muted);line-height:1.95;display:block;transition:color .2s}
+.fc a:hover{color:var(--gold)}
+.fbar{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;padding-top:1.4rem;font-size:.7rem;color:var(--dim)}
+
+@media(max-width:1000px){
+  .sp-hero-inner{grid-template-columns:1fr}
+  .sp-hero-logo{display:none}
+  .sp-stats{grid-template-columns:repeat(2,1fr)}
+  .about-grid,.sci-wrap,.amaint-grid,.irr-wrap{grid-template-columns:1fr}
+  .about-photo{display:none}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .le-cols{grid-template-columns:1fr;gap:1.5rem}
+  .le-div{display:none}
+  .promise-grid{grid-template-columns:repeat(3,1fr)}
+  .why-grid{grid-template-columns:1fr}
+  .amaint-why{position:static}
+  .ft-grid{grid-template-columns:1fr;gap:1.6rem}
+  .works-grid,.balcony-grid{grid-template-columns:1fr 1fr}
+  .nv,.nav-cta{display:none}
+  .hm{display:flex}
+}
+@media(max-width:560px){
+  .svc-grid{grid-template-columns:1fr}
+  .sp-stats{grid-template-columns:1fr 1fr}
+  .promise-grid{grid-template-columns:repeat(2,1fr)}
+  .le-grid{grid-template-columns:1fr 1fr}
+  .works-grid,.balcony-grid{grid-template-columns:1fr}
+  .irr-type{grid-template-columns:90px 1fr}
+  .irr-type img{width:90px;height:75px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nl">
+    <div class="lm"><svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="navdg" gradientUnits="userSpaceOnUse" x1="12" y1="20" x2="108" y2="102"><stop offset="0" stop-color="#2E7D74"/><stop offset="0.55" stop-color="#234B3A"/><stop offset="1" stop-color="#A9792B"/></linearGradient></defs><g fill="none" stroke="url(#navdg)" stroke-width="3"><ellipse cx="60" cy="60" rx="48" ry="17" transform="rotate(0 60 60)"/><ellipse cx="60" cy="60" rx="48" ry="17" transform="rotate(60 60 60)"/><ellipse cx="60" cy="60" rx="48" ry="17" transform="rotate(120 60 60)"/></g><circle cx="108" cy="60" r="4.5" fill="#A9792B"/><circle cx="84" cy="101.6" r="4.5" fill="#BD5F32"/><circle cx="36" cy="101.6" r="4.5" fill="#2E7D74"/><circle cx="60" cy="60" r="13" fill="#234B3A"/><polygon points="60,43 64.24,55.76 77,60 64.24,64.24 60,77 55.76,64.24 43,60 55.76,55.76" fill="#C7A24B"/></svg></div>
+    <div class="lw"><span class="ln">RANS Synergies</span><span class="lt">Connecting Ideas | Creating Values</span></div>
+  </a>
+  <ul class="nv">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="foods.html">Foods</a></li>
+    <li><a class="on" href="sasyaprada.html">Sasyaprada</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <span class="nav-cta"><a href="#sp-contact" class="ncta">Get a Quote</a></span>
+  <button class="hm" id="hmb" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="breadcrumb"><div class="wrap"><a href="index.html">RANS Synergies</a> &rsaquo; Sasyaprada</div></div>
+
+<!-- HERO -->
+<section class="sp-hero">
+  <div class="wrap">
+    <div class="sp-hero-inner">
+      <div>
+        <div class="eyebrow">Landscape &amp; Garden Management</div>
+        <h1>Nurture Earth.<br><em>Enhance Yield.</em></h1>
+        <p>Beautiful, sustainable green spaces for villas, apartments and communities — designed with scientific plant care and low-maintenance landscaping solutions.</p>
+        <div class="sp-hbtns">
+          <a href="#sp-contact" class="btn-sp btn-sp-p">Get a Free Quote</a>
+          <a href="#sp-services" class="btn-sp btn-sp-o">Our Services ↓</a>
+        </div>
+      </div>
+      <div class="sp-hero-logo">
+        <img src="images/sp-logo.jpg" alt="Sasyaprada — Nurture Earth, Enhance Yield">
+      </div>
+    </div>
+  </div>
+  <div class="sp-hero-wave"><svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,40 C360,80 1080,0 1440,40 L1440,60 L0,60 Z" fill="#F4EFE4"/></svg></div>
+</section>
+
+<!-- STATS -->
+<div class="sp-stats">
+  <div class="sp-st"><span class="sp-stn">3</span><span class="sp-stl">Core Services</span></div>
+  <div class="sp-st"><span class="sp-stn">20+</span><span class="sp-stl">Plant Varieties</span></div>
+  <div class="sp-st"><span class="sp-stn">100%</span><span class="sp-stl">Eco-Friendly</span></div>
+  <div class="sp-st"><span class="sp-stn">Hyd</span><span class="sp-stl">Hyderabad Based</span></div>
+</div>
+
+<!-- ABOUT -->
+<section class="pad" style="background:var(--bg)">
+  <div class="wrap">
+    <div class="about-grid">
+      <div>
+        <div class="sec-hdr">
+          <div class="lbl">About Sasyaprada</div>
+          <h2>Bringing Nature to <em>Every Space</em></h2>
+          <p>A landscape and garden management company focused on creating beautiful, sustainable and easy-to-maintain green spaces for villas, apartments and residential communities across Hyderabad.</p>
+        </div>
+        <p style="font-size:.88rem;color:var(--muted);line-height:1.85;margin-bottom:1.8rem">We combine practical landscape planning with scientific plant care methods to deliver healthy and visually appealing gardens suited to local climatic conditions. Our goal is to help communities experience cleaner, greener and healthier living environments through thoughtfully designed landscapes and reliable maintenance services.</p>
+        <div class="vmp">
+          <div class="vmp-label">Our Vision</div>
+          <div class="vmp-text">To create sustainable and refreshing green environments that improve the quality of urban living.</div>
+        </div>
+        <div class="vmp">
+          <div class="vmp-label">Our Mission</div>
+          <div class="vmp-text">To deliver practical, eco-friendly and scientifically managed landscape solutions that enhance residential living spaces while ensuring long-term greenery sustainability.</div>
+        </div>
+        <div class="approach-pills">
+          <span class="pill">Visually Attractive</span>
+          <span class="pill">Functional &amp; Practical</span>
+          <span class="pill">Easy to Maintain</span>
+          <span class="pill">Water-Efficient</span>
+          <span class="pill">Climate-Responsive</span>
+          <span class="pill">Eco-Sustainable</span>
+        </div>
+      </div>
+      <div class="about-photo">
+        <img src="images/about-garden.jpg" alt="Beautiful villa garden landscape by Sasyaprada">
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SERVICES -->
+<section class="pad sp-bg" id="sp-services">
+  <div class="wrap">
+    <div class="sec-hdr">
+      <div class="lbl">What We Do</div>
+      <h2>Complete Landscape <em>Solutions</em></h2>
+      <p>Beautiful, sustainable and healthy green spaces — from first design to ongoing care.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card">
+        <img class="svc-img" src="images/svc-landscape.jpg" alt="Landscape design and development by Sasyaprada">
+        <div class="svc-card-body">
+        <span class="svc-ico">🌿</span>
+        <div class="svc-t">Landscape Design &amp; Development</div>
+        <div class="svc-d">Designing beautiful, functional and sustainable landscapes tailored to your space and lifestyle.</div>
+        <ul class="svc-list">
+          <li>Home gardening</li>
+          <li>Apartment landscapes</li>
+          <li>Lawn establishment</li>
+          <li>Decorative planters &amp; green corners</li>
+        </ul>
+        </div>
+      </div>
+      <div class="svc-card">
+        <img class="svc-img" src="images/svc-irrigation.jpg" alt="Lawn sprinkler irrigation system by Sasyaprada">
+        <div class="svc-card-body">
+        <span class="svc-ico">💧</span>
+        <div class="svc-t">Smart Irrigation Systems</div>
+        <div class="svc-d">Optimise water usage with modern irrigation solutions that keep your landscape healthy and cost-efficient.</div>
+        <ul class="svc-list">
+          <li>Drip irrigation systems</li>
+          <li>Lawn sprinklers</li>
+          <li>Water-efficient irrigation design</li>
+        </ul>
+        </div>
+      </div>
+      <div class="svc-card">
+        <img class="svc-img" src="images/svc-maintenance.jpg" alt="Garden maintenance and pruning by Sasyaprada">
+        <div class="svc-card-body">
+        <span class="svc-ico">✂️</span>
+        <div class="svc-t">Garden Maintenance Services</div>
+        <div class="svc-d">Keeping your landscape healthy, clean and vibrant throughout the year with scheduled expert care.</div>
+        <ul class="svc-list">
+          <li>Lawn maintenance &amp; pruning</li>
+          <li>Plant nutrition management</li>
+          <li>Seasonal pruning &amp; shaping</li>
+          <li>Weed &amp; pest management</li>
+          <li>Plant replacement support</li>
+        </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LANDSCAPE ELEMENTS -->
+<section class="pad" style="background:var(--bg)">
+  <div class="wrap">
+    <div class="sec-hdr">
+      <div class="lbl">Landscape Elements</div>
+      <h2>Designing Beautiful Spaces, <em>Nurturing Green Lives</em></h2>
+      <p>Every landscape we create draws from a rich vocabulary of softscape and hardscape elements.</p>
+    </div>
+    <div class="le-cols">
+      <div>
+        <div class="le-col-title">🌱 Softscapes</div>
+        <p style="font-size:.75rem;color:var(--muted);margin-bottom:1rem;line-height:1.6">Living elements that bring life, colour and freshness to your landscape.</p>
+        <div class="le-grid">
+          <div class="le-tag">Lawns &amp; Grasses</div>
+          <div class="le-tag">Flowering Plants</div>
+          <div class="le-tag">Shrubs</div>
+          <div class="le-tag">Palms</div>
+          <div class="le-tag">Ornamental Plants</div>
+          <div class="le-tag">Ground Covers</div>
+          <div class="le-tag">Climbers &amp; Creepers</div>
+          <div class="le-tag">Hedge Plants</div>
+          <div class="le-tag">Ferns &amp; Foliage</div>
+          <div class="le-tag">Aquatic Plants</div>
+          <div class="le-tag">Fruit Garden</div>
+          <div class="le-tag">Kitchen Garden</div>
+        </div>
+      </div>
+      <div class="le-div"></div>
+      <div>
+        <div class="le-col-title" style="background:var(--sp-gold);color:#1D3D2A">🪨 Hardscapes</div>
+        <p style="font-size:.75rem;color:var(--muted);margin-bottom:1rem;line-height:1.6">Structural elements that add function, beauty and long-lasting value.</p>
+        <div class="le-grid">
+          <div class="le-tag">Pathways</div>
+          <div class="le-tag">Paving &amp; Terracing</div>
+          <div class="le-tag">Decking</div>
+          <div class="le-tag">Planter Boxes</div>
+          <div class="le-tag">Stone &amp; Pebble</div>
+          <div class="le-tag">Water Features</div>
+          <div class="le-tag">Seating &amp; Benches</div>
+          <div class="le-tag">Retaining Walls</div>
+          <div class="le-tag">Lighting Elements</div>
+          <div class="le-tag">Pergolas</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SMART IRRIGATION SHOWCASE -->
+<section class="pad sp-bg">
+  <div class="wrap">
+    <div class="sec-hdr">
+      <div class="lbl">Smart Irrigation Systems</div>
+      <h2>Sprinklers &amp; <em>Drip Irrigation</em></h2>
+      <p>Water-efficient irrigation designed for healthy plant growth and minimal wastage — combining sprinkler coverage for lawns with targeted drip irrigation for beds, shrubs and planters.</p>
+    </div>
+    <div class="irr-wrap">
+      <div class="irr-photo">
+        <img src="images/smart-irrigation.jpg" alt="Smart sprinkler and drip irrigation system installed by Sasyaprada">
+        <span class="irr-tag">Sprinklers + Drip</span>
+      </div>
+      <div>
+        <div class="irr-types">
+          <div class="irr-type">
+            <img src="images/svc-irrigation.jpg" alt="Lawn sprinkler irrigation">
+            <div class="irr-type-body">
+              <div class="irr-type-t">Lawn Sprinklers</div>
+              <div class="irr-type-d">Even, automated coverage for lawns and open green areas.</div>
+            </div>
+          </div>
+          <div class="irr-type">
+            <img src="images/drip-irrigation.jpg" alt="Drip irrigation system for plants and shrubs">
+            <div class="irr-type-body">
+              <div class="irr-type-t">Drip Irrigation</div>
+              <div class="irr-type-d">Slow, targeted watering at the root zone for shrubs, hedges and planters — minimal wastage, maximum absorption.</div>
+            </div>
+          </div>
+        </div>
+        <div class="irr-benefits">
+          <span class="irr-benefit">💧 Efficient Water Usage</span>
+          <span class="irr-benefit">🌱 Healthy Plant Growth</span>
+          <span class="irr-benefit">🛠️ Reduced Maintenance</span>
+          <span class="irr-benefit">🌍 Sustainable Landscape</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMISE BAND -->
+<div class="promise-band">
+  <div class="wrap">
+    <p style="text-align:center;font-size:.6rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,168,75,.7);margin-bottom:1.6rem">Our Promise</p>
+    <div class="promise-grid">
+      <div><div class="pi-ico">🌱</div><p>Sustainable Landscapes</p></div>
+      <div><div class="pi-ico">💧</div><p>Water Efficient Irrigation</p></div>
+      <div><div class="pi-ico">🔬</div><p>Scientific Plant Care</p></div>
+      <div><div class="pi-ico">♻️</div><p>Eco-Friendly Practices</p></div>
+      <div><div class="pi-ico">🛠️</div><p>Low Maintenance Solutions</p></div>
+      <div><div class="pi-ico">💎</div><p>Enhanced Aesthetic Value</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- SCIENTIFIC CARE -->
+<section class="pad" style="background:var(--bg)">
+  <div class="wrap">
+    <div class="sci-wrap">
+      <div class="sec-hdr" style="margin-bottom:0">
+        <div class="lbl">Scientific Plant Care</div>
+        <h2>Healthy Soil. Strong Roots. <em>Thriving Plants.</em></h2>
+        <p>Our scientific maintenance approach includes proven practices that ensure long-term plant health and vibrant landscapes.</p>
+      </div>
+      <div class="sci-grid">
+        <div class="sci-row">
+          <div class="sci-ico-wrap">🪱</div>
+          <div><div class="sci-t">Soil Conditioning</div><div class="sci-d">Improves soil structure, aeration and water retention for better root development and plant growth.</div></div>
+        </div>
+        <div class="sci-row">
+          <div class="sci-ico-wrap">🌿</div>
+          <div><div class="sci-t">Organic Nutrient Application</div><div class="sci-d">Organic nutrients and micronutrients enrich the soil naturally and promote eco-friendly growth.</div></div>
+        </div>
+        <div class="sci-row">
+          <div class="sci-ico-wrap">🧫</div>
+          <div><div class="sci-t">Biofertilizers Integration</div><div class="sci-d">Biofertilizers improve soil microbiology and nutrient availability for healthier plants.</div></div>
+        </div>
+        <div class="sci-row">
+          <div class="sci-ico-wrap">🐛</div>
+          <div><div class="sci-t">Preventive Pest Management</div><div class="sci-d">Eco-friendly solutions and regular monitoring keep pests and diseases away before they cause damage.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- OUR WORKS -->
+<section class="pad" style="background:var(--bg)">
+  <div class="wrap">
+    <div class="sec-hdr">
+      <div class="lbl">Our Works</div>
+      <h2>Transforming Outdoors, <em>Enhancing Lives</em></h2>
+      <p>A look at real villa, apartment and balcony transformations completed by Sasyaprada.</p>
+    </div>
+    <div class="works-grid">
+      <div class="work-item"><span class="work-badge before">Before</span><img src="images/work-before1.jpg" alt="Villa garden before landscaping"></div>
+      <div class="work-item"><span class="work-badge after">After</span><img src="images/work-after1.jpg" alt="Villa garden after landscaping by Sasyaprada"></div>
+      <div class="work-item"><span class="work-badge before">Before</span><img src="images/work-before2.jpg" alt="Apartment lawn before landscaping"></div>
+      <div class="work-item"><span class="work-badge after">After</span><img src="images/work-after2.jpg" alt="Apartment lawn after landscaping by Sasyaprada"></div>
+    </div>
+    <div class="works-sub">Budget-Friendly Balcony Plant Setups</div>
+    <div class="balcony-grid">
+      <img src="images/balcony1.jpg" alt="Balcony planter setup by Sasyaprada">
+      <img src="images/balcony2.jpg" alt="Apartment balcony garden by Sasyaprada">
+      <img src="images/balcony3.jpg" alt="Apartment balcony plants by Sasyaprada">
+      <img src="images/balcony4.jpg" alt="Balcony green corner by Sasyaprada">
+    </div>
+    <div class="approach-pills" style="justify-content:center;margin-top:1.6rem">
+      <span class="pill">Custom Design</span>
+      <span class="pill">Quality Plants &amp; Material</span>
+      <span class="pill">Budget Friendly</span>
+      <span class="pill">Expert Execution</span>
+      <span class="pill">Low Maintenance</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ANNUAL MAINTENANCE -->
+<section class="pad sp-bg" id="sp-maintenance">
+  <div class="wrap">
+    <div class="sec-hdr">
+      <div class="lbl">Annual Maintenance</div>
+      <h2>Healthy Plants. Beautiful Spaces. <em>All Year Long.</em></h2>
+      <p>Our annual maintenance plans ensure your landscape stays healthy, clean, vibrant and well-maintained throughout the year.</p>
+    </div>
+    <div class="amaint-grid">
+      <div class="amaint-list">
+        <div class="am-item"><span class="am-ico">🌿</span><div><div class="am-t">Regular Garden Maintenance</div><div class="am-d">Lawn care, pruning, shaping, weeding and garden upkeep on a scheduled basis.</div></div></div>
+        <div class="am-item"><span class="am-ico">🌱</span><div><div class="am-t">Plant Health Management</div><div class="am-d">Monitoring plant health, pest &amp; disease control and preventive care throughout the year.</div></div></div>
+        <div class="am-item"><span class="am-ico">💧</span><div><div class="am-t">Irrigation System Maintenance</div><div class="am-d">Checking, adjusting, cleaning and optimising irrigation systems for peak efficiency.</div></div></div>
+        <div class="am-item"><span class="am-ico">🌾</span><div><div class="am-t">Timely Nutrient Management</div><div class="am-d">Application of organic manures, micronutrients and biofertilizers as per seasonal requirements.</div></div></div>
+        <div class="am-item"><span class="am-ico">🍂</span><div><div class="am-t">Seasonal Plant Care</div><div class="am-d">Seasonal pruning, soil conditioning, replanting and plant replacement as needed.</div></div></div>
+        <div class="am-item"><span class="am-ico">📋</span><div><div class="am-t">Periodic Inspections</div><div class="am-d">Regular site visits, condition assessment and maintenance reporting to keep you informed.</div></div></div>
+      </div>
+      <div>
+        <div class="amaint-why">
+          <h3>Why Annual Maintenance Matters</h3>
+          <ul class="why-list">
+            <li>Healthy &amp; vibrant green spaces year-round</li>
+            <li>Prevent pests &amp; disease outbreaks</li>
+            <li>Efficient water usage</li>
+            <li>Enhances aesthetic appeal and property value</li>
+            <li>Sustainable &amp; eco-friendly garden care</li>
+          </ul>
+          <div class="ideal-for">
+            <p>Ideal For</p>
+            <div class="ideal-tags">
+              <span class="ideal-tag">🏠 Villas</span>
+              <span class="ideal-tag">🏢 Apartments</span>
+              <span class="ideal-tag">🏘️ Residentials</span>
+              <span class="ideal-tag">🏬 Commercial</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE -->
+<section class="pad" style="background:var(--bg)">
+  <div class="wrap">
+    <div class="sec-hdr">
+      <div class="lbl">Why Choose Sasyaprada</div>
+      <h2>Because Your Green Spaces Deserve <em>Scientific Care</em></h2>
+      <p>A landscape partner who combines knowledge, sustainability and reliability — for spaces you'll love every day.</p>
+    </div>
+    <div class="why-grid">
+      <div class="wc-card">
+        <div class="wc-ico">🔬</div>
+        <div><div class="wc-t">Scientific Plant Care</div><div class="wc-d">We apply proven horticultural science — soil conditioning, biofertilizers, organic nutrients — to ensure your plants thrive long-term.</div></div>
+      </div>
+      <div class="wc-card">
+        <div class="wc-ico">🌍</div>
+        <div><div class="wc-t">Sustainable Landscaping</div><div class="wc-d">Eco-friendly practices, water-efficient irrigation and climate-responsive plant selection for responsible green spaces.</div></div>
+      </div>
+      <div class="wc-card">
+        <div class="wc-ico">💰</div>
+        <div><div class="wc-t">Practical &amp; Affordable</div><div class="wc-d">Budget-conscious solutions without compromise — quality plants, expert execution and designs that stay beautiful over time.</div></div>
+      </div>
+      <div class="wc-card">
+        <div class="wc-ico">🛡️</div>
+        <div><div class="wc-t">Reliable Maintenance Support</div><div class="wc-d">Consistent scheduled visits, proactive monitoring and prompt response — so you can enjoy your garden stress-free.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band" id="sp-contact">
+  <div class="wrap">
+    <h2>Ready to Transform Your Space?</h2>
+    <p>Talk to our team today and get a customised landscape plan for your villa, apartment or community.</p>
+    <div class="cta-row">
+      <a href="https://wa.me/919493226637?text=Hi+RANS+Synergies%2C+I%27d+like+a+free+quote+for+Sasyaprada+landscape+services" target="_blank" class="btn-sp btn-sp-p">📱 WhatsApp Us</a>
+      <a href="tel:+919493226637" class="btn-sp btn-sp-o">📞 Call +91 94932 26637</a>
+      <a href="contact.html" class="btn-sp btn-sp-o">📋 Send Enquiry</a>
+    </div>
+    <p style="margin-top:1.5rem;font-size:.72rem;color:rgba(255,255,255,.5)">Follow us on Instagram <a href="https://instagram.com/sasyaprada" target="_blank" style="color:var(--sp-gold);font-weight:600">@sasyaprada</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="ft-grid">
+      <div>
+        <div class="fb-n">RANS Synergies Pvt Ltd</div>
+        <div class="fb-t">Connecting Ideas | Creating Values</div>
+        <p class="fb-d">A diversified Hyderabad group with operations across assembly, procurement, energy, farming, real estate, landscape and more.</p>
+      </div>
+      <div class="fc"><h4>Sasyaprada</h4>
+        <a href="#sp-services">Our Services</a>
+        <a href="#sp-maintenance">Annual Maintenance</a>
+        <a href="#sp-contact">Get a Quote</a></div>
+      <div class="fc"><h4>RANS Group</h4>
+        <a href="index.html">Home</a>
+        <a href="foods.html">Homemade Foods</a>
+        <a href="aqua.html">Aqua &amp; Seafood</a>
+        <a href="contact.html">Contact RANS</a></div>
+      <div class="fc"><h4>Reach Us</h4>
+        <a href="tel:+919493226637">📞 +91 94932 26637</a>
+        <a href="https://wa.me/919493226637?text=Hi+RANS+Synergies%2C+I%27d+like+to+enquire+about+Sasyaprada" target="_blank">💬 WhatsApp Us</a>
+        <a href="https://instagram.com/sasyaprada" target="_blank">📷 @sasyaprada</a>
+        <span>Hyderabad, Telangana</span></div>
+    </div>
+    <div class="fbar"><p id="yr"></p><span>Sasyaprada — Nurture Earth | Enhance Yield</span></div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').innerHTML='&copy; '+new Date().getFullYear()+' RANS Synergies. All rights reserved.';
+var hb=document.getElementById('hmb');if(hb){hb.addEventListener('click',function(){var n=document.querySelector('.nv');var o=n.style.display==='flex';n.style.cssText=o?'':'display:flex;flex-direction:column;position:absolute;top:70px;left:0;right:0;background:rgba(250,246,238,.98);padding:1.3rem 5vw;gap:1rem;border-bottom:1px solid rgba(35,32,26,.12)';});}
+</script>
+</body>
+</html>
